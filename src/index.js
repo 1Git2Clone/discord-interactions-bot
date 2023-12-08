@@ -14,6 +14,10 @@ client.on('ready', (c) => {
 })
 
 client.on('messageCreate', (message) => {
+  if(message.author.bot) {
+    return;
+  }
+
   if (message.content === 'Hu Tao') {
     message.reply('HU TAO BEST GIRL! <3')
   }
