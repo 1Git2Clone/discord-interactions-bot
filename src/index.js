@@ -1,3 +1,4 @@
+require('dotenv').config(); // CHECK README.md
 const { Client, IntentsBitField } = require('discord.js');
 
 const client = new Client({
