@@ -14,7 +14,9 @@ client.on('ready', (c) => {
 })
 
 client.on('messageCreate', (message) => {
-  console.log(`${message}`)
+  if (message.content === 'Hu Tao') {
+    message.reply('HU TAO BEST GIRL! <3')
+  }
 })
 
 client.login(
