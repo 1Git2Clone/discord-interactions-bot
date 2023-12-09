@@ -8,4 +8,6 @@ You need to make a .env file containing
 your bot token and then tweak some bot
 settings and so on.
 
+## CURRENTLY AVAILABLE INTERACTION COMMANDS: `/quote`, `/tieup`
+
 [Tutorial video for reference](https://www.youtube.com/watch?v=KZ3tIGHU314)

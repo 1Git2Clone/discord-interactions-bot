@@ -28,11 +28,13 @@ const pengooQuotes = [
   
 
 
+// ALL COMMANDS
 
-// Actual commands:
 
-// "Hu Tao" msg response;
 
+// MESSAGE COMMANDS (NOT USING)
+
+/*
 client.on('messageCreate', (message) => {
   if(message.author.bot) {
     return;
@@ -43,19 +45,18 @@ client.on('messageCreate', (message) => {
   }
 
   // emoji testing
-  /*
+  
   if (message.content === 'emote') {
     const emojiId = '1183105414032793600';
     const emoji = `<:TOOBASED:${emojiId}>`;
 
     message.reply(emoji);
   }
-  */
+  
 })
+*/
 
-
-
-// SLASH COMMANDS
+// SLASH COMMANDS (USING)
 
 client.on('interactionCreate', (interaction) => {
   if(!interaction.isChatInputCommand()) return;
@@ -63,12 +64,7 @@ client.on('interactionCreate', (interaction) => {
   const userToTieup = interaction.options.getUser('user');
   const invoker = interaction.user;
 
-  // console.log(interaction.commandName);
-
   switch(interaction.commandName) {
-    case 'hey':
-      interaction.reply('hey!');
-      break;
     case 'quote':
       const randomQuoteIndex = Math.floor(Math.random() * pengooQuotes.length);
       const randomQuote = pengooQuotes[randomQuoteIndex];
