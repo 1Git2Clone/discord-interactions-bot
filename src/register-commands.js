@@ -9,7 +9,19 @@ const commands = [
   {
     name: 'quote',
     description: 'Replies with a random nopengoo quote',
-  }
+  },
+  {
+    name: 'tieup',
+    description: 'Tie up the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to tie up',
+        required: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

@@ -11,7 +11,7 @@ const client = new Client({
 });
 
 client.on('ready', (c) => {
-  console.log(`${c.user.tag} is online!`)
+  console.log(`⚜️  ${c.user.tag} is online!`)
 })
 
 /// ! ! ! VARIABLES FOR COMMANDS ! ! !
@@ -60,6 +60,9 @@ client.on('messageCreate', (message) => {
 client.on('interactionCreate', (interaction) => {
   if(!interaction.isChatInputCommand()) return;
 
+  const userToTieup = interaction.options.getUser('user');
+  const invoker = interaction.user;
+
   // console.log(interaction.commandName);
 
   switch(interaction.commandName) {
@@ -70,6 +73,15 @@ client.on('interactionCreate', (interaction) => {
       const randomQuoteIndex = Math.floor(Math.random() * pengooQuotes.length);
       const randomQuote = pengooQuotes[randomQuoteIndex];
       interaction.reply(randomQuote);
+      break;
+    case 'tieup':
+      if (userToTieup && invoker !== userToTieup) {
+        interaction.reply(`## *${invoker.toString()} ties up ${userToTieup.toString()}*\nhttps://tenor.com/view/tied-up-aiura-anime-gif-19863563`);
+      }
+      else {
+        interaction.reply(`${userToTieup.toString()} Why do you wanna tie yourself up mate?\n||please tie me up instead~~!||`);
+      }
+      break;
     default:
       break;
   }
