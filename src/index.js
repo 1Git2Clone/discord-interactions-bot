@@ -41,6 +41,16 @@ client.on('messageCreate', (message) => {
   if (message.content === 'Hu Tao') {
     message.reply('HU TAO BEST GIRL! <3');
   }
+
+  // emoji testing
+  /*
+  if (message.content === 'emote') {
+    const emojiId = '1183105414032793600';
+    const emoji = `<:TOOBASED:${emojiId}>`;
+
+    message.reply(emoji);
+  }
+  */
 })
 
 
