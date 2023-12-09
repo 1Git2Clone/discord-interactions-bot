@@ -19,10 +19,11 @@ client.on('ready', (c) => {
 const pengooQuotes = [
   "hu tao is fucking cute i cant",
   "# yes",
-  "its pengover",
+  "https://media.discordapp.net/stickers/1181980659825262662.webp?size=160", // "its pengover",
   "ah-",
   "LISSEN",
-  "sweet dreams"
+  "sweet dreams",
+  "Stop saying 'kys' lil bro"
 ]
   
 
