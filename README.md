@@ -1,4 +1,4 @@
-**THIS IS MY INITIAL TEST DISCORD BOT**
+# **THIS IS MY INITIAL TEST DISCORD BOT**
 
 To make the bot work on your end you need to get nodejs and npm alongside some npm packages: nodemon & dotenv.
 
