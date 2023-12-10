@@ -7,7 +7,7 @@ const commands = [
     description: 'Replies with a nopengoo quote (random if no index is specified)',
     options: [
       {
-        name: 'index',
+        name: 'quote_number',
         type: 4, // Type 4 represents an integer
         description: 'Optional: The index of the quote (starting from 1)',
         required: false,
@@ -26,6 +26,30 @@ const commands = [
         name: 'user',
         type: 6, // Type 6 represents a user
         description: 'The user to tie up',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'hug',
+    description: 'Hug the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to hug',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'pat',
+    description: 'Pat the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to pat',
         required: true,
       },
     ],
