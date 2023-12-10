@@ -31,7 +31,9 @@ client.on('messageCreate', (message) => {
   if(message.author.bot) {
     return;
   }
-  /*
+  
+  // plain command testing
+
   if (message.content === 'Hu Tao') {
     message.reply('HU TAO BEST GIRL! <3');
   }
@@ -45,6 +47,8 @@ client.on('messageCreate', (message) => {
     message.reply(emoji);
   }
   
+  // "/tieup" testing but as a message command (didn't work well)
+
   if (message.content.toLowerCase() === '/tieup' && message.mentions.users.size > 0) {
     const userToTieup = message.mentions.users.first();
     const invoker = message.author;
@@ -94,12 +98,10 @@ client.on('interactionCreate', async (interaction) => {
       interaction.reply(selectedQuote);
       break;
     case 'quotelist':
-      // Create a message to display available quotes and their indexes
-      const quotesList = pengooQuotes.map((quote, i) => `**${i}:** ${quote}`).join('\n');
+      const quoteList = pengooQuotes.map((quote, i) => `**${i}:** ${quote}`).join('\n');
 
-      // Reply with the list of available quotes
       interaction.reply({
-        content: `Here are the available quotes:\n${quotesList}`,
+        content: `Here are the available quotes:\n${quoteList}`,
         ephemeral: true,
       });
       break;
@@ -122,6 +124,9 @@ client.on('interactionCreate', async (interaction) => {
       break;
   }
 });
+
+
+// STARTS THE BOT WITH THE AUTHENICATED IN (.env) TOKEN
 
 
 client.login(process.env.TOKEN);
