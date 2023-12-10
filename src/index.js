@@ -97,7 +97,7 @@ client.on('interactionCreate', async (interaction) => {
   switch(interaction.commandName) {
     case 'quote':
       const index = interaction.options.getInteger('quote_number') - 1;
-      console.log(index);
+      
       const randomIndex = ( index >= 0 && (index < pengooQuotes.length - 1) ) ? (index) : ( Math.floor(Math.random() * pengooQuotes.length) );
 
       const selectedQuote = pengooQuotes[randomIndex];
