@@ -1,5 +1,5 @@
 require('dotenv').config(); // CHECK README.md
-const { Client, IntentsBitField, messageLink } = require('discord.js');
+const { Client, IntentsBitField, messageLink, Embed, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
   intents: [
@@ -16,15 +16,7 @@ client.on('ready', (c) => {
 
 /// ! ! ! VARIABLES FOR COMMANDS ! ! !
 
-const pengooQuotes = [
-  "hu tao is fucking cute i cant",
-  "# yes",
-  "https://media.discordapp.net/stickers/1181980659825262662.webp?size=160", // "its pengover",
-  "ah-",
-  "LISSEN",
-  "sweet dreams",
-  "Stop saying 'kys' lil bro"
-]
+
   
 
 
@@ -58,9 +50,19 @@ client.on('messageCreate', (message) => {
 
 // SLASH COMMANDS (USING)
 
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async (interaction) => {
   if(!interaction.isChatInputCommand()) return;
 
+  const pengooQuotes = [
+    "hu tao is fucking cute i cant",
+    "# yes",
+    "https://media.discordapp.net/stickers/1181980659825262662.webp?size=160", // "its pengover",
+    "ah-",
+    "LISSEN",
+    "sweet dreams",
+    "Stop saying 'kys' lil bro"
+  ]
+  
   const userToTieup = interaction.options.getUser('user');
   const invoker = interaction.user;
 
@@ -72,10 +74,17 @@ client.on('interactionCreate', (interaction) => {
       break;
     case 'tieup':
       if (userToTieup && invoker !== userToTieup) {
-        interaction.reply(`## *${invoker.toString()} ties up ${userToTieup.toString()}*\nhttps://tenor.com/view/tied-up-aiura-anime-gif-19863563`);
+        const tieupEmbed = new EmbedBuilder()
+        .setColor('#ff6d66')
+        .setImage('https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&');
+
+        interaction.reply({
+          content: `*${invoker.toString()} ties up ${userToTieup.toString()}*`,
+          embeds: [tieupEmbed],
+        });
       }
       else {
-        interaction.reply(`${userToTieup.toString()} Why do you wanna tie yourself up mate?\n||please tie me up instead~~!||`);
+        interaction.reply(`${userToTieup.toString()}Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
       }
       break;
     default:
