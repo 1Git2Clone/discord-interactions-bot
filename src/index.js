@@ -86,19 +86,17 @@ client.on('interactionCreate', async (interaction) => {
 
   switch(interaction.commandName) {
     case 'quote':
-      const index = interaction.options.getInteger('index'); // Get the specified index
+      const index = interaction.options.getInteger('index') - 1; // Get the specified index
 
-      const isValidIndex = !isNaN(index) && index >= 0 && index < pengooQuotes.length;
-
-      const randomIndex = isValidIndex ? index : Math.floor(Math.random() * pengooQuotes.length);
+      const randomIndex = ( index >= 0 && (index < pengooQuotes.length + 1) ) ? (index) : ( Math.floor(Math.random() * pengooQuotes.length) );
 
       const selectedQuote = pengooQuotes[randomIndex];
 
       // Reply with the quote
-      interaction.reply(selectedQuote);
+      interaction.reply(`${selectedQuote}`);
       break;
     case 'quotelist':
-      const quoteList = pengooQuotes.map((quote, i) => `**${i}:** ${quote}`).join('\n');
+      const quoteList = pengooQuotes.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
 
       interaction.reply({
         content: `Here are the available quotes:\n${quoteList}`,

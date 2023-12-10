@@ -9,7 +9,7 @@ const commands = [
       {
         name: 'index',
         type: 4, // Type 4 represents an integer
-        description: 'Optional: The index of the quote (starting from 0)',
+        description: 'Optional: The index of the quote (starting from 1)',
         required: false,
       },
     ],
