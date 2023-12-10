@@ -73,7 +73,8 @@ client.on('interactionCreate', async (interaction) => {
     "ah-",
     "LISSEN",
     "sweet dreams",
-    "Stop saying 'kys' lil bro"
+    "Stop saying 'kys' lil bro",
+    `Yo rizz me up? Umm, okay, I assume you meant to say "Tie me up" right? Uhm, well, I'm really not sure about that but-`
   ]
   
   const userToTieup = interaction.options.getUser('user');
@@ -81,9 +82,26 @@ client.on('interactionCreate', async (interaction) => {
 
   switch(interaction.commandName) {
     case 'quote':
-      const randomQuoteIndex = Math.floor(Math.random() * pengooQuotes.length);
-      const randomQuote = pengooQuotes[randomQuoteIndex];
-      interaction.reply(randomQuote);
+      const index = interaction.options.getInteger('index'); // Get the specified index
+
+      const isValidIndex = !isNaN(index) && index >= 0 && index < pengooQuotes.length;
+
+      const randomIndex = isValidIndex ? index : Math.floor(Math.random() * pengooQuotes.length);
+
+      const selectedQuote = pengooQuotes[randomIndex];
+
+      // Reply with the quote
+      interaction.reply(selectedQuote);
+      break;
+    case 'quotelist':
+      // Create a message to display available quotes and their indexes
+      const quotesList = pengooQuotes.map((quote, i) => `**${i}:** ${quote}`).join('\n');
+
+      // Reply with the list of available quotes
+      interaction.reply({
+        content: `Here are the available quotes:\n${quotesList}`,
+        ephemeral: true,
+      });
       break;
     case 'tieup':
       if (userToTieup && invoker !== userToTieup) {
@@ -97,7 +115,7 @@ client.on('interactionCreate', async (interaction) => {
         });
       }
       else {
-        interaction.reply(`${userToTieup.toString()}Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
+        interaction.reply(`${userToTieup.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
       }
       break;
     default:

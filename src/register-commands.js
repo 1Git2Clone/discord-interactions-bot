@@ -4,7 +4,19 @@ const { REST, Routes } = require('discord.js');
 const commands = [
   {
     name: 'quote',
-    description: 'Replies with a random nopengoo quote',
+    description: 'Replies with a nopengoo quote (random if no index is specified)',
+    options: [
+      {
+        name: 'index',
+        type: 4, // Type 4 represents an integer
+        description: 'Optional: The index of the quote (starting from 0)',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'quotelist',
+    description: 'Lists out the available quotes to you'
   },
   {
     name: 'tieup',
