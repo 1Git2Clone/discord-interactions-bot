@@ -170,11 +170,11 @@ client.on('interactionCreate', async (interaction) => {
       });
       break;
     case 'tieup':
-      if (userToInteract && invoker !== userToInteract) {
-        const tieupEmbed = new EmbedBuilder()
-        .setColor('#ff6d66')
-        .setImage('https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&');
+      const tieupEmbed = new EmbedBuilder()
+      .setColor('#ff6d66')
+      .setImage('https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&');
 
+      if (userToInteract && invoker !== userToInteract) {
         interaction.reply({
           content: `*${invoker.toString()} ties up ${userToInteract.toString()}*`,
           embeds: [tieupEmbed],
@@ -185,39 +185,43 @@ client.on('interactionCreate', async (interaction) => {
       }
       break;
       case 'hug':
+      const randomHugIndex = Math.floor(Math.random() * pengooHugs.length);
+      const randomHugGIF = pengooHugs[randomHugIndex];
+
+      const hugEmbed = new EmbedBuilder()
+      .setColor('#ff6d66')
+      .setImage(`${randomHugGIF}`);
+
       if (userToInteract && invoker !== userToInteract) {
-        const randomHugIndex = Math.floor(Math.random() * pengooHugs.length);
-        const randomHugGIF = pengooHugs[randomHugIndex];
-
-        const hugEmbed = new EmbedBuilder()
-        .setColor('#ff6d66')
-        .setImage(`${randomHugGIF}`);
-
         interaction.reply({
           content: `*${invoker.toString()} hugs ${userToInteract.toString()}*`,
           embeds: [hugEmbed],
         });
       }
       else {
-        interaction.reply(`${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
+        interaction.reply({
+          content: `*${invoker.toString()} hugs himself...* (:sob:)`,
+          embeds: [hugEmbed],
+        });
       }
       break;
       case 'pat':
+      const randomPatIndex = Math.floor(Math.random() * pengooPats.length);
+      const randomPatGIF = pengooPats[randomPatIndex];
+      
+      const patEmbed = new EmbedBuilder()
+      .setColor('#ff6d66')
+      .setImage(`${randomPatGIF}`);
       if (userToInteract && invoker !== userToInteract) {
-        const randomPatIndex = Math.floor(Math.random() * pengooPats.length);
-        const randomPatGIF = pengooPats[randomPatIndex];
-        
-        const patEmbed = new EmbedBuilder()
-        .setColor('#ff6d66')
-        .setImage(`${randomPatGIF}`);
-
         interaction.reply({
           content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
           embeds: [patEmbed],
         });
       }
       else {
-        interaction.reply(`${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
+        interaction.reply({
+          content: `How does one even pat themselves??`,
+        });
       }
       break;
     default:
