@@ -3,13 +3,14 @@
 Planning to make even more commands in the future, feel free to tell me suggestions (discord: 1killsteal)
 
 ## CURRENTLY AVAILABLE INTERACTION COMMANDS:
+### ALL THE COMMANDS ARE DECLARED IN `src/register-commands.js` AND USED IN `src/index.js`
 * **QUOTES**
-    * `/quote`                | **1 OPTION:** "quote_number" *(optional)* **in: src/register-commands.js** - Uses the numbering from `/quotelist`
+    * `/quote`                | **1 OPTION:** "quote_number" *(optional)* - Uses the numbering from `/quotelist`
     * `/quotelist`            | **8 for now**
 * **USER INTERACTIONS**
-    * `/tieup`                | **1 OPTION:** "user" *(REQUIRED)* **in: src/register-commands.js** - Specifies the user to do the action to.
-    * `/hug`                  | **1 OPTION:** "user" *(REQUIRED)* **in: src/register-commands.js** - Specifies the user to do the action to.
-    * `/pat`                  | **1 OPTION:** "user" *(REQUIRED)* **in: src/register-commands.js** - Specifies the user to do the action to.
+    * `/tieup`                | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
+    * `/hug`                  | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
+    * `/pat`                  | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
 
 
 Made this bot for a discord server: https://discord.gg/nopengoo
