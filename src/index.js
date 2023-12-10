@@ -220,7 +220,7 @@ client.on('interactionCreate', async (interaction) => {
       }
       else {
         interaction.reply({
-          content: `How does one even pat themselves??`,
+          content: `How does one even pat themselves?? :sob::sob::sob:`,
         });
       }
       break;
