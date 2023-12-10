@@ -24,14 +24,14 @@ client.on('ready', (c) => {
 
 
 
-// MESSAGE COMMANDS (NOT USING)
+// MESSAGE COMMANDS (ADAPTATION FOR SLASH COMMANDS - NOT USING)
 
 /*
 client.on('messageCreate', (message) => {
   if(message.author.bot) {
     return;
   }
-
+  /*
   if (message.content === 'Hu Tao') {
     message.reply('HU TAO BEST GIRL! <3');
   }
@@ -43,6 +43,19 @@ client.on('messageCreate', (message) => {
     const emoji = `<:TOOBASED:${emojiId}>`;
 
     message.reply(emoji);
+  }
+  
+  if (message.content.toLowerCase() === '/tieup' && message.mentions.users.size > 0) {
+    const userToTieup = message.mentions.users.first();
+    const invoker = message.author;
+
+    if (userToTieup && invoker !== userToTieup) {
+      message.reply(`## *${invoker.toString()} ties up ${userToTieup.toString()}*\nhttps://tenor.com/view/tied-up-aiura-anime-gif-19863563`);
+      return;
+    } else {
+      message.reply(`${userToTieup.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
+      return;
+    }
   }
   
 })
