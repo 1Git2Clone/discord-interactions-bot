@@ -63,48 +63,15 @@ function getRandomElementFromArray(array) {
 
 
 
-// MESSAGE COMMANDS (ADAPTATION FOR SLASH COMMANDS - NOT USING)
+// MESSAGE COMMANDS (USER REPLY ONLY ADAPTATION FOR SLASH COMMANDS) (Unfortunately I dont know how do get it to work with "!pat @direct.ping")
 
 
 client.on('messageCreate', (message) => {
   if(message.author.bot) {
     return;
   }
-  
-  /*
-  // plain command testing
 
-  if (message.content === 'Hu Tao') {
-    message.reply('HU TAO BEST GIRL! <3');
-  }
-
-  // emoji testing
-  
-  if (message.content === 'emote') {
-    const emojiId = '1183105414032793600';
-    const emoji = `<:TOOBASED:${emojiId}>`;
-
-    message.reply(emoji);
-  }
-  
-  // "/tieup" testing but as a message command (didn't work well)
-
-  if (message.content.toLowerCase() === '/tieup' && message.mentions.users.size > 0) {
-    const userToTieup = message.mentions.users.first();
-    const invoker = message.author;
-
-    if (userToTieup && invoker !== userToTieup) {
-      message.reply(`## *${invoker.toString()} ties up ${userToTieup.toString()}*\nhttps://tenor.com/view/tied-up-aiura-anime-gif-19863563`);
-      return;
-    } else {
-      message.reply(`${userToTieup.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
-      return;
-    }
-  }
-  */
- 
-
-  // Declare userToInteract for the entire scope of messageCreate
+  // Entire scope of messageCreate so i can reuse it
   const userToInteract = message.mentions.users.first();
   const invoker = message.author;
 
@@ -150,15 +117,19 @@ client.on('messageCreate', (message) => {
 
 // SLASH COMMANDS (USING)
 
+
 client.on('interactionCreate', async (interaction) => {
   if(!interaction.isChatInputCommand()) return;
 
   
-  
   const userToInteract = interaction.options.getUser('user');
   const invoker = interaction.user;
 
+
   switch(interaction.commandName) {
+
+    // Used a different random index picker because i dont reuse this exact code archetype yet to make it a seperate function.
+
     case 'quote':
       const index = interaction.options.getInteger('quote_number') - 1;
 
@@ -168,6 +139,9 @@ client.on('interactionCreate', async (interaction) => {
 
       interaction.reply(`${selectedQuote}`);
       break;
+
+    // Lists out all available quotes, "ephemeral" means only visible to the invoicer (https://discordjs.guide/slash-commands/response-methods#ephemeral-responses)
+
     case 'quotelist':
       const quoteList = pengooQuotes.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
 
@@ -176,6 +150,9 @@ client.on('interactionCreate', async (interaction) => {
         ephemeral: true,
       });
       break;
+
+    // Slash command for tying up the user (analogous to !tieup)
+
     case 'tieup':
       const tieupEmbed = getRandomElementFromArray(pengooTieups)
 
@@ -188,7 +165,10 @@ client.on('interactionCreate', async (interaction) => {
         interaction.reply(`${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
       }
       break;
-      case 'hug':
+
+    // Slash command for hugging the user (analogous to !hug)
+
+    case 'hug':
       const hugEmbed = getRandomElementFromArray(pengooHugs);
 
       if (userToInteract && invoker !== userToInteract) {
@@ -203,6 +183,9 @@ client.on('interactionCreate', async (interaction) => {
         });
       }
       break;
+
+    // Slash command for patting the user (analogous to !pat)
+
       case 'pat':
       const patEmbed = getRandomElementFromArray(pengooPats);
 
@@ -218,9 +201,14 @@ client.on('interactionCreate', async (interaction) => {
         });
       }
       break;
-    default:
-      break;
+
+
+
+    default: // No command case, I dont even think its needed to exist but oh well...
+      break; // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
+
   }
+
 });
 
 
