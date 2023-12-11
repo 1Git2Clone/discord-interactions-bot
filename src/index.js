@@ -26,6 +26,11 @@ const pengooQuotes = [
   `Yo rizz me up? Umm, okay, I assume you meant to say "Tie me up" right? Uhm, well, I'm really not sure about that but-`,
   "WAIT I LOVE HOW GETTING TIED UP IS ACTUALLY MY WHOLE PERSONALITY NOW LOL"
 ]
+const pengooTieups = [
+  "https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1183694079847059517/ezgif.com-video-to-gif.gif?ex=65894404&is=6576cf04&hm=a5f8a526218dc1d13a2957d6e3405f90cd6de1cc6d3d7e7b27d02108898db347&",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1183694247724077056/sasha-blouse.gif?ex=6589442c&is=6576cf2c&hm=63dc677cf5f449483f9f94372bd4d7e241f7aec2b92636e4e906ae22081bf04c&"
+]
 const pengooHugs = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183462503364186112/hug.gif?ex=65886c58&is=6575f758&hm=275d61937ad2b529274870ad670319c4f978513f9442e19e74e698ca7fb88448&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1183462503011844096/anime-hug-anime-hugging.gif?ex=65886c58&is=6575f758&hm=a4138a57846d2ceeb75110e622353ce7506bf7f624d6a5f061e54dcefceb647b&",
@@ -38,6 +43,20 @@ const pengooPats = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183493730339139694/hu-tao-hug.gif?ex=6588896d&is=6576146d&hm=f90650df440c5b14a3f965b8448a91f393539739dfdfb98bcceb956b384dd029&"
 ]
   
+// FUNCTIONS TO MAKE THE CODE MODULAR:
+
+function getRandomElementFromArray(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  const randomElement = array[randomIndex];
+
+  const embed = new EmbedBuilder()
+  .setColor('#ff6d66')
+  .setImage(randomElement);
+
+  return embed;
+}
+
+
 
 
 // ALL COMMANDS
@@ -92,9 +111,7 @@ client.on('messageCreate', (message) => {
   // Command for tying up a user
   if ( (message.content.toLowerCase() === '!tieup' && userToInteract) && message.member) {
     if (invoker !== userToInteract) {
-      const tieupEmbed = new EmbedBuilder()
-        .setColor('#ff6d66')
-        .setImage('https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&');
+      const tieupEmbed = getRandomElementFromArray(pengooTieups)
 
       message.channel.send({
         content: `*${invoker.toString()} ties up ${userToInteract.toString()}*`,
@@ -108,12 +125,7 @@ client.on('messageCreate', (message) => {
 
   // Command for hugging a user
   if ( (message.content.toLowerCase() === '!hug' && userToInteract) && message.member) {
-    const randomHugIndex = Math.floor(Math.random() * pengooHugs.length);
-    const randomHugGIF = pengooHugs[randomHugIndex];
-
-    const hugEmbed = new EmbedBuilder()
-    .setColor('#ff6d66')
-    .setImage(`${randomHugGIF}`);
+    const hugEmbed = getRandomElementFromArray(pengooHugs);
 
     message.channel.send({
       content: `*${invoker.toString()} hugs ${userToInteract.toString()}*`,
@@ -124,12 +136,7 @@ client.on('messageCreate', (message) => {
 
   // Command for patting a user
   if ( (message.content.toLowerCase() === '!pat' && userToInteract) && message.member) {
-    const randomPatIndex = Math.floor(Math.random() * pengooPats.length);
-    const randomPatGIF = pengooPats[randomPatIndex];
-
-    const patEmbed = new EmbedBuilder()
-    .setColor('#ff6d66')
-    .setImage(`${randomPatGIF}`);
+    const patEmbed = getRandomElementFromArray(pengooPats);
 
     message.channel.send({
       content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
@@ -170,35 +177,26 @@ client.on('interactionCreate', async (interaction) => {
       });
       break;
     case 'tieup':
-      const tieupEmbed = new EmbedBuilder()
-      .setColor('#ff6d66')
-      .setImage('https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&');
+      const tieupEmbed = getRandomElementFromArray(pengooTieups)
 
       if (userToInteract && invoker !== userToInteract) {
         interaction.reply({
           content: `*${invoker.toString()} ties up ${userToInteract.toString()}*`,
           embeds: [tieupEmbed],
         });
-      }
-      else {
+      } else {
         interaction.reply(`${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
       }
       break;
       case 'hug':
-      const randomHugIndex = Math.floor(Math.random() * pengooHugs.length);
-      const randomHugGIF = pengooHugs[randomHugIndex];
-
-      const hugEmbed = new EmbedBuilder()
-      .setColor('#ff6d66')
-      .setImage(`${randomHugGIF}`);
+      const hugEmbed = getRandomElementFromArray(pengooHugs);
 
       if (userToInteract && invoker !== userToInteract) {
         interaction.reply({
           content: `*${invoker.toString()} hugs ${userToInteract.toString()}*`,
           embeds: [hugEmbed],
         });
-      }
-      else {
+      } else {
         interaction.reply({
           content: `*${invoker.toString()} hugs himself...* (:sob:)`,
           embeds: [hugEmbed],
@@ -206,12 +204,8 @@ client.on('interactionCreate', async (interaction) => {
       }
       break;
       case 'pat':
-      const randomPatIndex = Math.floor(Math.random() * pengooPats.length);
-      const randomPatGIF = pengooPats[randomPatIndex];
-      
-      const patEmbed = new EmbedBuilder()
-      .setColor('#ff6d66')
-      .setImage(`${randomPatGIF}`);
+      const patEmbed = getRandomElementFromArray(pengooPats);
+
       if (userToInteract && invoker !== userToInteract) {
         interaction.reply({
           content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
