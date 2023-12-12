@@ -42,6 +42,21 @@ const pengooPats = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183461661181497364/mai-sakurajima.gif?ex=65886b8f&is=6575f68f&hm=bd9a84bd007425cbf785bd28183c2ed32c2da97a254dc944f13e4e6b0b84bf63&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1183493730339139694/hu-tao-hug.gif?ex=6588896d&is=6576146d&hm=f90650df440c5b14a3f965b8448a91f393539739dfdfb98bcceb956b384dd029&"
 ]
+const pengooKiss = [
+  "https://media.discordapp.net/attachments/614790390020833280/1184153815767855234/hutao-kiss.gif?ex=658af02e&is=65787b2e&hm=83a389fd93d6bd7b34a4ae7db2d9e7cfe3f29d819c503cc1e24c05018a070453&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184153816187277462/kiss.gif?ex=658af02e&is=65787b2e&hm=a43bc326b2d410a7bd797f806b7961ffc62ea32d7453f9a8be40fc3d3220ea3f&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184153816644468766/cute-kawai.gif?ex=658af02e&is=65787b2e&hm=685e92a6efc33064088f8862042a1591128722c9ac61d167cefd334ddbcd6ce4&=",
+]
+const pengooSlap = [
+  "https://media.discordapp.net/attachments/614790390020833280/1184154726238007349/genshin-impact-venti.gif?ex=658af107&is=65787c07&hm=610dce3dc84a7149573449cd51000b044b1daf2ba8b64b7547809f619e4cd83b&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184154726670028882/slap.gif?ex=658af107&is=65787c07&hm=a432223a617d6296ef0ea9627a0522d822f5f300d471a2208b38551f70e11395&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184154727286579210/anime-slap-mad.gif?ex=658af107&is=65787c07&hm=a59ed74001222dc70c1bbb40be3311e3bed4405d6469e9416ec3a7af8c344ac0&=",
+]
+const pengooPunch = [
+  "https://media.discordapp.net/attachments/614790390020833280/1184154350172508222/one-punch.gif?ex=658af0ad&is=65787bad&hm=b50f9fd6ac75cb0095182914f6d324c71543d8c6edf4943c71100366d0ca30c7&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184154350575169568/anime-fight.gif?ex=658af0ad&is=65787bad&hm=f3682a7426a04be86716517f519952bcfcd7ce8de3b08e9e3f2b57abc8b7c024&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184154351049113761/anime-smash.gif?ex=658af0ad&is=65787bad&hm=8a7c0dd6a847e099805224c55d42a4b742d8ca7e74731b28d3256d30afd3761a&=",
+]
   
 // FUNCTIONS TO MAKE THE CODE MODULAR:
 
@@ -111,7 +126,40 @@ client.on('messageCreate', (message) => {
     });
     return;
   }
-  
+
+  // Command for kissing a user
+  if ( (message.content.toLowerCase() === '!kiss' && userToInteract) && message.member) {
+    const kissEmbed = getRandomElementFromArray(pengooKiss);
+
+    message.channel.send({
+      content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
+      embeds: [kissEmbed],
+    });
+    return;
+  }
+
+  // Command for slapping a user
+  if ( (message.content.toLowerCase() === '!slap' && userToInteract) && message.member) {
+    const slapEmbed = getRandomElementFromArray(pengooSlap);
+
+    message.channel.send({
+      content: `*${invoker.toString()} slaps ${userToInteract.toString()}*`,
+      embeds: [slapEmbed],
+    });
+    return;
+  }
+
+  // Command for punching a user
+  if ( (message.content.toLowerCase() === '!punch' && userToInteract) && message.member) {
+    const punchEmbed = getRandomElementFromArray(pengooPunch);
+
+    message.channel.send({
+      content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
+      embeds: [punchEmbed],
+    });
+    return;
+  } 
+
 })
 
 
@@ -133,7 +181,7 @@ client.on('interactionCreate', async (interaction) => {
     case 'quote':
       const index = interaction.options.getInteger('quote_number') - 1;
 
-      const randomIndex = ( index >= 0 && (index < pengooQuotes.length - 1) ) ? (index) : ( Math.floor(Math.random() * pengooQuotes.length) );
+      const randomIndex = ( index >= 0 && (index <= pengooQuotes.length - 1) ) ? (index) : ( Math.floor(Math.random() * pengooQuotes.length) );
 
       const selectedQuote = pengooQuotes[randomIndex];
 
@@ -202,7 +250,59 @@ client.on('interactionCreate', async (interaction) => {
       }
       break;
 
+    // Slash command for kissing the user (analogous to !kiss)
 
+    case 'kiss':
+      const kissEmbed = getRandomElementFromArray(pengooKiss);
+
+      if (userToInteract && invoker !== userToInteract) {
+        interaction.reply({
+          content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
+          embeds: [kissEmbed],
+        });
+      }
+      else {
+        interaction.reply({
+          content: `I'm sorry... :sob:`,
+        });
+      }
+      break;
+
+    // Slash command for slapping the user (analogous to !slap)
+
+    case 'slap':
+      const slapEmbed = getRandomElementFromArray(pengooSlap);
+
+      if (userToInteract && invoker !== userToInteract) {
+        interaction.reply({
+          content: `*${invoker.toString()} slaps ${userToInteract.toString()}*`,
+          embeds: [slapEmbed],
+        });
+      }
+      else {
+        interaction.reply({
+          content: `Please don't slap yourself! :sob:`,
+        });
+      }
+      break;
+
+    // Slash command for punching the user (analogous to !slap)
+
+    case 'punch':
+      const punchEmbed = getRandomElementFromArray(pengooPunch);
+
+      if (userToInteract && invoker !== userToInteract) {
+        interaction.reply({
+          content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
+          embeds: [punchEmbed],
+        });
+      }
+      else {
+        interaction.reply({
+          content: `Please don't punch yourself! :sob:`,
+        });
+      }
+      break;
 
     default: // No command case, I dont even think its needed to exist but oh well...
       break; // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P

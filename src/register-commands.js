@@ -54,6 +54,42 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'kiss',
+    description: 'Pat the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to pat',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'slap',
+    description: 'Pat the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to pat',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'punch',
+    description: 'Pat the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to pat',
+        required: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
