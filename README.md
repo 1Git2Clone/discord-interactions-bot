@@ -5,13 +5,18 @@ Planning to make even more commands in the future, feel free to tell me suggesti
 ## CURRENTLY AVAILABLE INTERACTION COMMANDS:
 ### ALL THE COMMANDS ARE DECLARED IN `src/register-commands.js` AND USED IN `src/index.js`
 * **QUOTES**
-    * `/quote`                | **1 OPTION:** "quote_number" *(optional)* - Uses the numbering from `/quotelist`
-    * `/quotelist`            | **8 for now**
-* **USER INTERACTIONS**
-    * `/tieup`                | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
-    * `/hug`                  | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
-    * `/pat`                  | **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
+ * `/quote`                     | **1 OPTION:** "quote_number" *(optional)* - Uses the numbering from `/quotelist`
+ * `/quotelist`                 | **8 for now**
 
+* **USER INTERACTIONS**       // FOR ALL: **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
+ * `/tieup`
+ * `/hug`
+ * `/pat`
+ * `/kiss`
+ * `/slap`
+ * `/punch`
+* **ALL USER INTERACTIONS HAVE "!" (EXCLAIMATION MARK) ANALOGUES IN CASE YOU WANT TO DO THE INTERACTION WITH A REPLY TO THE USER**
+* **EXAMPLE:** `!pat` *(in a message reply with the mentioned user)* works.
 
 Made this bot for a discord server: https://discord.gg/nopengoo
 
