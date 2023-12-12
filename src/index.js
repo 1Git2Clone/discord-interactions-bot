@@ -66,7 +66,11 @@ const pengooPunch = [
   "https://media.discordapp.net/attachments/614790390020833280/1184154350575169568/anime-fight.gif?ex=658af0ad&is=65787bad&hm=f3682a7426a04be86716517f519952bcfcd7ce8de3b08e9e3f2b57abc8b7c024&=",
   "https://media.discordapp.net/attachments/614790390020833280/1184154351049113761/anime-smash.gif?ex=658af0ad&is=65787bad&hm=8a7c0dd6a847e099805224c55d42a4b742d8ca7e74731b28d3256d30afd3761a&=",
 ]
-  
+const pengooBonk = [
+  "https://media.discordapp.net/attachments/614790390020833280/1184200805738348696/powerful-head-slap.gif?ex=658b1bf1&is=6578a6f1&hm=4690e1ecdfe9cc1a23d77bcc174ec1cf31c32ce9e007d02a024bbe960270f6db&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184200806245879828/atonnic-bonk.gif?ex=658b1bf1&is=6578a6f1&hm=007abbc5c5b7ec6140d752ebe6a1337a6ff461fa09a607539b1226ae984b7c97&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1184200806673686608/shinji-shinji-broom.gif?ex=658b1bf1&is=6578a6f1&hm=6d0d271fb33ad7d3e42a70365d7e10460bb219608a20c1093b8c9a9c3bb18ef8&=",
+]
 
 
 // FUNCTIONS TO MAKE THE CODE MODULAR:
@@ -128,6 +132,10 @@ const pengooCommands = [
   {
     name: "punch",
     description: "Punch a user"
+  },
+  {
+    name: "bonk",
+    description: "Bonk someone who's horni"
   }
 ]
 
@@ -174,7 +182,7 @@ client.on('messageCreate', (message) => {
 
   // END OF HELP COMMAND
 
-  
+
 
   // Command for printing out a random quote
   if( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[1].name}`) && message.member) {
@@ -262,6 +270,17 @@ client.on('messageCreate', (message) => {
     });
     return;
   } 
+
+  // Command for bonking a user
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[9].name}` && userToInteract) && message.member) {
+    const bonkEmbed = getRandomElementFromArray(pengooBonk);
+
+    message.channel.send({
+      content: `*${invoker.toString()} bonks ${userToInteract.toString()}*`,
+      embeds: [bonkEmbed],
+    });
+    return;
+  }
 
 })
 
@@ -409,6 +428,23 @@ client.on('interactionCreate', async (interaction) => {
       else {
         interaction.reply({
           content: `Please don't punch yourself! :sob:`,
+        });
+      }
+      break;
+
+    case `${pengooCommands[9].name}`:
+      const bonkEmbed = getRandomElementFromArray(pengooBonk);
+
+      if (userToInteract && invoker !== userToInteract) {
+        interaction.reply({
+          content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
+          embeds: [bonkEmbed],
+        });
+      }
+      else {
+        interaction.reply({
+          content: `*${invoker.toString()} bonks themselves*`,
+          embeds: [bonkEmbed],
         });
       }
       break;
