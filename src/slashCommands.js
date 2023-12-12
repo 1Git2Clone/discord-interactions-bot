@@ -1,3 +1,7 @@
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
+// DATE:         12.12.2023 (DD/MM/YYYY)
+// Used ChatGPT? *Sigh* yes a bit... (will use again)
+
 require('dotenv').config(); // CHECK README.md
 const { getRandomEmbedElementFromArray } = require('./functions')
 
@@ -6,10 +10,7 @@ const { getRandomEmbedElementFromArray } = require('./functions')
 // ! SLASH COMMANDS !
 
 
-
 // !! HELP COMMAND !!
-
-
 
 function slashHelpCommand(interaction, commandListHeading, commandList){
   return interaction.reply({
@@ -17,8 +18,6 @@ function slashHelpCommand(interaction, commandListHeading, commandList){
   ephemeral: true,
   });
 }
-
-
 
 // !! END OF HELP COMMAND !!
 

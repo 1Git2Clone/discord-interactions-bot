@@ -1,6 +1,8 @@
-require('dotenv').config(); // CHECK README.md
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
+// DATE:         12.12.2023 (DD/MM/YYYY)
+// Used ChatGPT? *Sigh* yes a bit... (will use again)
 
-require('./functions')
+require('dotenv').config(); // CHECK README.md
 
 const messageCommands = require('./messageCommands'); 
 const slashCommands = require('./slashCommands');
@@ -26,7 +28,7 @@ client.on('ready', (c) => {
 
 
 
-/// ! ! ! VARIABLES FOR COMMANDS ! ! !
+/// ! ! ! ARRAY VARIABLES FOR COMMANDS ! ! !
 
 
 
@@ -76,13 +78,6 @@ const bonkArray = [
   "https://media.discordapp.net/attachments/614790390020833280/1184200806245879828/atonnic-bonk.gif?ex=658b1bf1&is=6578a6f1&hm=007abbc5c5b7ec6140d752ebe6a1337a6ff461fa09a607539b1226ae984b7c97&=",
   "https://media.discordapp.net/attachments/614790390020833280/1184200806673686608/shinji-shinji-broom.gif?ex=658b1bf1&is=6578a6f1&hm=6d0d271fb33ad7d3e42a70365d7e10460bb219608a20c1093b8c9a9c3bb18ef8&=",
 ]
-
-
-// FUNCTIONS TO MAKE THE CODE MODULAR:
-
-
-
-
 
 
 
@@ -140,7 +135,7 @@ const commandArray = [
 const quoteListHeading = `Here are the available quotes:\n`;
 const quoteList = quoteArray.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
 
-//prematurely wrapped all the commands for the !help and /help commands
+// prematurely wrapped all the commands for the !help and /help commands
 const commandListHeading =`# ALL ${COMMAND_PREFIX} COMMANDS ONLY WORK ON MESSAGE REPLIES.\n
   Aka "${COMMAND_PREFIX}${commandArray[3].name}" for example works only by REPLYING to the user and not mentioning them.\n
   In the case where you want to mention someone, please use the Slash (/) commands.\n
@@ -149,7 +144,7 @@ const commandList = commandArray.map(command => `**${COMMAND_PREFIX}${command.na
 
 
 
-// ALL COMMANDS
+// ! ! ! COMMANDS ! ! !
 
 
 
@@ -157,27 +152,22 @@ const commandList = commandArray.map(command => `**${COMMAND_PREFIX}${command.na
 
 
 client.on('messageCreate', async (message) => {
+
+
   if(message.author.bot) {
     return;
   }
   
+
   // Entire scope of messageCreate so i can reuse it
   const userToInteract = message.mentions.users.first();
   const invoker = message.author;
 
 
-  // HELP COMMAND
-
-
-
+  // Help command. Gives a small description about the commands and lists all of them.
   if (message.content.toLowerCase() === `${COMMAND_PREFIX}${commandArray[0].name}`) {
     await messageCommands.helpMessageCommand(message, commandListHeading, commandList);
   }
-
-
-
-  // END OF HELP COMMAND
-
 
 
   // Command for printing out a random quote
@@ -249,49 +239,41 @@ client.on('interactionCreate', async (interaction) => {
 
 
     // Quote command. Used a different random index picker because i dont reuse this exact code archetype yet to make it a seperate function.
-
     case `${commandArray[1].name}`:
       slashCommands.slashQuoteCommand(interaction, quoteArray);
     break;
 
     // Lists out all available quotes, "ephemeral" means only visible to the invoicer (https://discordjs.guide/slash-commands/response-methods#ephemeral-responses)
-
     case `${commandArray[2].name}`:
       slashCommands.slashQuotelistCommand(interaction, quoteListHeading, quoteList);
     break;
 
     // Slash command for tying up the user (analogous to !tieup)
-
     case `${commandArray[3].name}`:
       slashCommands.slashTieupCommand(interaction, tieupArray, invoker, userToInteract);
     break;
 
     // Slash command for hugging the user (analogous to !hug)
-
     case `${commandArray[4].name}`:
       slashCommands.slashHugCommand(interaction, hugArray, invoker, userToInteract);
     break;
 
     // Slash command for patting the user (analogous to !pat)
-
     case `${commandArray[5].name}`:
       slashCommands.slashPatCommand(interaction, patArray, invoker, userToInteract);
     break;
 
     // Slash command for kissing the user (analogous to !kiss)
-
     case `${commandArray[6].name}`:
       slashCommands.slashKissCommand(interaction, kissArray, invoker, userToInteract);
     break;
 
     // Slash command for slapping the user (analogous to !slap)
-
     case `${commandArray[7].name}`:
       slashCommands.slashSlapCommand(interaction, slapArray, invoker, userToInteract);
     break;
 
     // Slash command for punching the user (analogous to !punch)
-
     case `${commandArray[8].name}`:
       slashCommands.slashPunchCommand(interaction, punchArray, invoker, userToInteract);
     break;

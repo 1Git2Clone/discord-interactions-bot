@@ -1,4 +1,7 @@
-require('dotenv').config(); // CHECK README.md
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
+// DATE:         12.12.2023 (DD/MM/YYYY)
+// Used ChatGPT? *Sigh* yes a bit... (will use again)
+
 const { getRandomEmbedElementFromArray } = require('./functions')
 
 
@@ -6,10 +9,7 @@ const { getRandomEmbedElementFromArray } = require('./functions')
 // ! MESSAGE COMMANDS !
 
 
-
 // !! HELP COMMAND !!
-
-
 
 async function helpMessageCommand(message, commandListHeading, commandList) {
   return message.channel.send({
@@ -17,12 +17,8 @@ async function helpMessageCommand(message, commandListHeading, commandList) {
     ephemeral: true,
   });
 }
-  
-
-
 
 // !! END OF HELP COMMAND !!
-
 
 
 // Command for printing out a random quote

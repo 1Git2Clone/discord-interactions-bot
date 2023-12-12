@@ -15,6 +15,7 @@ Planning to make even more commands in the future, feel free to tell me suggesti
  * `/kiss`
  * `/slap`
  * `/punch`
+ * `/bonk`
 * **ALL USER INTERACTIONS HAVE "!" (EXCLAIMATION MARK) ANALOGUES IN CASE YOU WANT TO DO THE INTERACTION WITH A REPLY TO THE USER**
 * **EXAMPLE:** `!pat` *(in a message reply with the mentioned user)* works.
 
