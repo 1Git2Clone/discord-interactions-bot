@@ -4,6 +4,10 @@ Planning to make even more commands in the future, feel free to tell me suggesti
 
 ## CURRENTLY AVAILABLE INTERACTION COMMANDS:
 ### ALL THE COMMANDS ARE DECLARED IN `src/register-commands.js` AND USED IN `src/index.js`
+
+* **HELP COMMAND**
+ * `/help`                      | ***Self-explanatory.*** Displays some text about how the bot works and all its commands.
+
 * **QUOTES**
  * `/quote`                     | **1 OPTION:** "quote_number" *(optional)* - Uses the numbering from `/quotelist`
  * `/quotelist`                 | **8 for now**
