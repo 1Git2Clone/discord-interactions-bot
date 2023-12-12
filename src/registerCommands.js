@@ -1,3 +1,5 @@
+/* discord-interactions-bot/src/registerCommands.js */
+
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
 // DATE:         12.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
