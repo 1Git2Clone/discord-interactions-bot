@@ -145,8 +145,11 @@ const quoteListHeading = `Here are the available quotes:\n`;
 const quoteList = pengooQuotes.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
 
 //prematurely wrapped all the commands for the !help and /help commands
-const commandListHeading = `Here's a list of all the available commands:\n`;
-const commandList = pengooCommands.map(command => `**${commandPrefix}${command.name}:** ${command.description}`).join('\n');
+const commandListHeading =`# ALL ${commandPrefix} COMMANDS ONLY WORK ON MESSAGE REPLIES.\n
+  Aka "${commandPrefix}${pengooCommands[3].name}" for example works only by REPLYING to the user and not mentioning them.\n
+  In the case where you want to mention someone, please use the Slash (/) commands.\n
+  Here's the list of all the available commands:`;
+const commandList = pengooCommands.map(command => `**${commandPrefix}${command.name} OR /${command.name}** ${command.description}`).join('\n');
 
 
 
