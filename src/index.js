@@ -1,4 +1,7 @@
 require('dotenv').config(); // CHECK README.md
+
+// ASSIGNING INTENTS (https://discordjs.guide/popular-topics/intents.html)
+
 const { Client, IntentsBitField, messageLink, Embed, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
@@ -10,11 +13,17 @@ const client = new Client({
   ],
 });
 
+// STARTING CLIENT TERMINAL MSG
+
 client.on('ready', (c) => {
   console.log(`⚜️  ${c.user.tag} is online!`)
 })
 
+
+
 /// ! ! ! VARIABLES FOR COMMANDS ! ! !
+
+
 
 const pengooQuotes = [
   "hu tao is fucking cute i cant",
@@ -58,7 +67,11 @@ const pengooPunch = [
   "https://media.discordapp.net/attachments/614790390020833280/1184154351049113761/anime-smash.gif?ex=658af0ad&is=65787bad&hm=8a7c0dd6a847e099805224c55d42a4b742d8ca7e74731b28d3256d30afd3761a&=",
 ]
   
+
+
 // FUNCTIONS TO MAKE THE CODE MODULAR:
+
+
 
 function getRandomElementFromArray(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
@@ -71,6 +84,61 @@ function getRandomElementFromArray(array) {
   return embed;
 }
 
+
+
+// COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
+
+
+
+const commandPrefix = "!";
+
+const pengooCommands = [
+  {
+    name: "help",
+    description: "Display help information"
+  },
+  {
+    name: "quote",
+    description: "Get a random quote"
+  },
+  {
+    name: "quotelist",
+    description: "List all available quotes"
+  },
+  {
+    name: "tieup",
+    description: "Tie up a user"
+  },
+  {
+    name: "hug",
+    description: "Hug a user"
+  },
+  {
+    name: "pat",
+    description: "Pat a user"
+  },
+  {
+    name: "kiss",
+    description: "Kiss a user"
+  },
+  {
+    name: "slap",
+    description: "Slap a user"
+  },
+  {
+    name: "punch",
+    description: "Punch a user"
+  }
+]
+
+
+// prematurely wrapped all the quotes for !quotelist and /quotelist commands
+const quoteListHeading = `Here are the available quotes:\n`;
+const quoteList = pengooQuotes.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
+
+//prematurely wrapped all the commands for the !help and /help commands
+const commandListHeading = `Here's a list of all the available commands:\n`;
+const commandList = pengooCommands.map(command => `**${commandPrefix}${command.name}:** ${command.description}`).join('\n');
 
 
 
@@ -90,10 +158,45 @@ client.on('messageCreate', (message) => {
   const userToInteract = message.mentions.users.first();
   const invoker = message.author;
 
+
+  // HELP COMMAND
+
+
+
+  if (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[0].name}`) {
+    message.channel.send({
+      content:`${commandListHeading}${commandList}`,
+      ephemeral: true,
+    });
+  }
+
+
+
+  // END OF HELP COMMAND
+
+  
+
+  // Command for printing out a random quote
+  if( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[1].name}`) && message.member) {
+    const randomIndex = Math.floor(Math.random() * pengooQuotes.length);
+    const selectedQuote = pengooQuotes[randomIndex];
+    message.channel.send(selectedQuote);
+  }
+
+  // Command for printing out the list of quotes
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[2].name}`) && message.member) {
+    message.channel.send({
+      content: `${quoteListHeading}${quoteList}`,
+      ephemeral: true,
+    });
+    return;
+  }
+
   // Command for tying up a user
-  if ( (message.content.toLowerCase() === '!tieup' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[3].name}` && userToInteract) && message.member) {
     if (invoker !== userToInteract) {
       const tieupEmbed = getRandomElementFromArray(pengooTieups)
+      
 
       message.channel.send({
         content: `*${invoker.toString()} ties up ${userToInteract.toString()}*`,
@@ -106,7 +209,7 @@ client.on('messageCreate', (message) => {
   }
 
   // Command for hugging a user
-  if ( (message.content.toLowerCase() === '!hug' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[4].name}` && userToInteract) && message.member) {
     const hugEmbed = getRandomElementFromArray(pengooHugs);
 
     message.channel.send({
@@ -117,7 +220,7 @@ client.on('messageCreate', (message) => {
   }
 
   // Command for patting a user
-  if ( (message.content.toLowerCase() === '!pat' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[5].name}` && userToInteract) && message.member) {
     const patEmbed = getRandomElementFromArray(pengooPats);
 
     message.channel.send({
@@ -128,7 +231,7 @@ client.on('messageCreate', (message) => {
   }
 
   // Command for kissing a user
-  if ( (message.content.toLowerCase() === '!kiss' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[6].name}` && userToInteract) && message.member) {
     const kissEmbed = getRandomElementFromArray(pengooKiss);
 
     message.channel.send({
@@ -139,7 +242,7 @@ client.on('messageCreate', (message) => {
   }
 
   // Command for slapping a user
-  if ( (message.content.toLowerCase() === '!slap' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[7].name}` && userToInteract) && message.member) {
     const slapEmbed = getRandomElementFromArray(pengooSlap);
 
     message.channel.send({
@@ -150,7 +253,7 @@ client.on('messageCreate', (message) => {
   }
 
   // Command for punching a user
-  if ( (message.content.toLowerCase() === '!punch' && userToInteract) && message.member) {
+  if ( (message.content.toLowerCase() === `${commandPrefix}${pengooCommands[8].name}` && userToInteract) && message.member) {
     const punchEmbed = getRandomElementFromArray(pengooPunch);
 
     message.channel.send({
@@ -176,9 +279,17 @@ client.on('interactionCreate', async (interaction) => {
 
   switch(interaction.commandName) {
 
-    // Used a different random index picker because i dont reuse this exact code archetype yet to make it a seperate function.
+    case `${pengooCommands[0].name}`:
+      interaction.reply({
+        content:`${commandListHeading}${commandList}`,
+        ephemeral: true,
+      })
+      break;
 
-    case 'quote':
+
+    // Quote command. Used a different random index picker because i dont reuse this exact code archetype yet to make it a seperate function.
+
+    case `${pengooCommands[1].name}`:
       const index = interaction.options.getInteger('quote_number') - 1;
 
       const randomIndex = ( index >= 0 && (index <= pengooQuotes.length - 1) ) ? (index) : ( Math.floor(Math.random() * pengooQuotes.length) );
@@ -190,18 +301,16 @@ client.on('interactionCreate', async (interaction) => {
 
     // Lists out all available quotes, "ephemeral" means only visible to the invoicer (https://discordjs.guide/slash-commands/response-methods#ephemeral-responses)
 
-    case 'quotelist':
-      const quoteList = pengooQuotes.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
-
+    case `${pengooCommands[2].name}`:
       interaction.reply({
-        content: `Here are the available quotes:\n${quoteList}`,
+        content: `${quoteListHeading}${quoteList}`,
         ephemeral: true,
       });
       break;
 
     // Slash command for tying up the user (analogous to !tieup)
 
-    case 'tieup':
+    case `${pengooCommands[3].name}`:
       const tieupEmbed = getRandomElementFromArray(pengooTieups)
 
       if (userToInteract && invoker !== userToInteract) {
@@ -216,7 +325,7 @@ client.on('interactionCreate', async (interaction) => {
 
     // Slash command for hugging the user (analogous to !hug)
 
-    case 'hug':
+    case `${pengooCommands[4].name}`:
       const hugEmbed = getRandomElementFromArray(pengooHugs);
 
       if (userToInteract && invoker !== userToInteract) {
@@ -234,7 +343,7 @@ client.on('interactionCreate', async (interaction) => {
 
     // Slash command for patting the user (analogous to !pat)
 
-      case 'pat':
+      case `${pengooCommands[5].name}`:
       const patEmbed = getRandomElementFromArray(pengooPats);
 
       if (userToInteract && invoker !== userToInteract) {
@@ -252,7 +361,7 @@ client.on('interactionCreate', async (interaction) => {
 
     // Slash command for kissing the user (analogous to !kiss)
 
-    case 'kiss':
+    case `${pengooCommands[6].name}`:
       const kissEmbed = getRandomElementFromArray(pengooKiss);
 
       if (userToInteract && invoker !== userToInteract) {
@@ -270,7 +379,7 @@ client.on('interactionCreate', async (interaction) => {
 
     // Slash command for slapping the user (analogous to !slap)
 
-    case 'slap':
+    case `${pengooCommands[7].name}`:
       const slapEmbed = getRandomElementFromArray(pengooSlap);
 
       if (userToInteract && invoker !== userToInteract) {
@@ -286,9 +395,9 @@ client.on('interactionCreate', async (interaction) => {
       }
       break;
 
-    // Slash command for punching the user (analogous to !slap)
+    // Slash command for punching the user (analogous to !punch)
 
-    case 'punch':
+    case `${pengooCommands[8].name}`:
       const punchEmbed = getRandomElementFromArray(pengooPunch);
 
       if (userToInteract && invoker !== userToInteract) {

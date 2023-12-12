@@ -3,6 +3,10 @@ const { REST, Routes } = require('discord.js');
 
 const commands = [
   {
+    name: 'help',
+    description: 'Shows a list of all the available commands.',
+  },
+  {
     name: 'quote',
     description: 'Replies with a nopengoo quote (random if no index is specified)',
     options: [
