@@ -1,8 +1,8 @@
 /* discord-interactions-bot/src/registerCommands.js */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
-// DATE:         12.12.2023 (DD/MM/YYYY)
-// Used ChatGPT? *Sigh* yes a bit... (will use again)
+// DATE:         12.13.2023 (DD/MM/YYYY)
+// Used ChatGPT? Not on this file actually. tutorial vid instead... https://www.youtube.com/watch?v=KZ3tIGHU314
 
 require('dotenv').config(); // CHECK README.md
 const { REST, Routes } = require('discord.js');
@@ -66,7 +66,7 @@ const commands = [
   },
   {
     name: 'kiss',
-    description: 'Pat the mentioned user',
+    description: 'Kiss the mentioned user',
     options: [
       {
         name: 'user',
@@ -78,7 +78,7 @@ const commands = [
   },
   {
     name: 'slap',
-    description: 'Pat the mentioned user',
+    description: 'Slap the mentioned user',
     options: [
       {
         name: 'user',
@@ -90,7 +90,19 @@ const commands = [
   },
   {
     name: 'punch',
-    description: 'Pat the mentioned user',
+    description: 'Punch the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to pat',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'bonk',
+    description: 'Bonk the mentioned user',
     options: [
       {
         name: 'user',
@@ -111,7 +123,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
   await rest.put(
     Routes.applicationGuildCommands(
       process.env.CLIENT_ID,
-      process.env.GUILD_ID
+      process.env.GUILD_ID,
       ),
     { body: commands }
   );
