@@ -1,4 +1,4 @@
-/* discord-interactions-bot/src/functions.js */
+/* discord-interactions-bot/src/functions.ts */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
 // DATE:         12.12.2023 (DD/MM/YYYY)
@@ -6,19 +6,22 @@
 
 // !!!FUNCTIONS USED IN COMMANDS!!!
 
-const { Client, IntentsBitField, messageLink, Embed, EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from 'discord.js';
 
-function getRandomEmbedElementFromArray(array) {
+function getRandomEmbedElementFromArray<T>(array: T[]): EmbedBuilder {
   const randomIndex = Math.floor(Math.random() * array.length);
   const randomElement = array[randomIndex];
 
   const embed = new EmbedBuilder()
-  .setColor('#ff6d66')
-  .setImage(randomElement);
+    .setColor('#ff6d66');
+
+  if (typeof randomElement === 'string') {
+    embed.setImage(randomElement);
+  }
 
   return embed;
 }
 
-module.exports = {
+export {
   getRandomEmbedElementFromArray,
-}
+};

@@ -1,4 +1,4 @@
-/* discord-interactions-bot/src/registerCommands.js */
+/* discord-interactions-bot/src/registerCommands.ts */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
 // DATE:         12.13.2023 (DD/MM/YYYY)

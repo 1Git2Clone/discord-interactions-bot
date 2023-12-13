@@ -1,4 +1,4 @@
-/* discord-interactions-bot/src/index.js */
+/* discord-interactions-bot/src/index.ts */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
 // DATE:         12.12.2023 (DD/MM/YYYY)
@@ -8,6 +8,10 @@ require('dotenv').config(); // CHECK README.md
 
 const messageCommands = require('./messageCommands'); 
 const slashCommands = require('./slashCommands');
+
+
+import { CommandInteraction, Message, User } from 'discord.js';
+
 
 // ASSIGNING INTENTS (https://discordjs.guide/popular-topics/intents.html)
 
@@ -24,7 +28,7 @@ const client = new Client({
 
 // STARTING CLIENT TERMINAL MSG
 
-client.on('ready', (c) => {
+client.on('ready', (c: { user: { tag: any; }; }) => {
   console.log(`⚜️  ${c.user.tag} is online!`)
 })
 
@@ -42,7 +46,8 @@ const quoteArray = [
   "LISSEN",
   "sweet dreams",
   `Yo rizz me up? Umm, okay, I assume you meant to say "Tie me up" right? Uhm, well, I'm really not sure about that but-`,
-  "WAIT I LOVE HOW GETTING TIED UP IS ACTUALLY MY WHOLE PERSONALITY NOW LOL"
+  "WAIT I LOVE HOW GETTING TIED UP IS ACTUALLY MY WHOLE PERSONALITY NOW LOL",
+  "# what the fuck"
 ]
 const tieupArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&",
@@ -153,7 +158,7 @@ const commandList = commandArray.map(command => `**${COMMAND_PREFIX}${command.na
 // MESSAGE COMMANDS (USER REPLY ONLY ADAPTATION FOR SLASH COMMANDS) (Unfortunately I dont know how do get it to work with "!pat @direct.ping")
 
 
-client.on('messageCreate', async (message) => {
+client.on('messageCreate', async (message: Message) => {
 
 
   if(message.author.bot) {
@@ -163,8 +168,7 @@ client.on('messageCreate', async (message) => {
 
   // Entire scope of messageCreate so i can reuse it
   const userToInteract = message.mentions.users.first();
-  const invoker = message.author;
-
+  const invoker: User = message.author;
 
   // Help command. Gives a small description about the commands and lists all of them.
   if (message.content.toLowerCase() === `${COMMAND_PREFIX}${commandArray[0].name}`) {
@@ -223,12 +227,12 @@ client.on('messageCreate', async (message) => {
 // SLASH COMMANDS ('./slashCommands.js)
 
 
-client.on('interactionCreate', async (interaction) => {
+client.on('interactionCreate', async (interaction: CommandInteraction) => {
   if(!interaction.isChatInputCommand()) return;
 
   
   const userToInteract = interaction.options.getUser('user');
-  const invoker = interaction.user;
+  const invoker : User = interaction.user;
 
 
   switch(interaction.commandName) {
