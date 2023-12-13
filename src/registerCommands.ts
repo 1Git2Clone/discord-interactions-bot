@@ -1,7 +1,7 @@
 /* discord-interactions-bot/src/registerCommands.ts */
 
-// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
-// DATE:         12.13.2023 (DD/MM/YYYY)
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/discord-interactions-bot/)
+// DATE:         14.13.2023 (DD/MM/YYYY)
 // Used ChatGPT? Not on this file actually. tutorial vid instead... https://www.youtube.com/watch?v=KZ3tIGHU314
 
 require('dotenv').config(); // CHECK README.md

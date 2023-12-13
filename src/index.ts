@@ -1,7 +1,7 @@
 /* discord-interactions-bot/src/index.ts */
 
-// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
-// DATE:         12.12.2023 (DD/MM/YYYY)
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/discord-interactions-bot/)
+// DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
 require('dotenv').config(); // CHECK README.md
@@ -9,13 +9,12 @@ require('dotenv').config(); // CHECK README.md
 const messageCommands = require('./messageCommands'); 
 const slashCommands = require('./slashCommands');
 
-
 import { CommandInteraction, Message, User } from 'discord.js';
 
 
 // ASSIGNING INTENTS (https://discordjs.guide/popular-topics/intents.html)
 
-const { Client, IntentsBitField, messageLink, Embed, EmbedBuilder } = require('discord.js');
+const { Client, IntentsBitField, messageLink, Embed, EmbedBuilder, ActivityType } = require('discord.js');
 
 const client = new Client({
   intents: [
@@ -26,10 +25,29 @@ const client = new Client({
   ],
 });
 
+// database
+const mongoose = require('mongoose');
+
+(async () =>{
+  try {
+    mongoose.set('strictQuery', false);
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log(`Connected to DB.`);
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
 // STARTING CLIENT TERMINAL MSG
 
 client.on('ready', (c: { user: { tag: any; }; }) => {
   console.log(`⚜️  ${c.user.tag} is online!`)
+
+  client.user.setActivity({
+    name: "SUB TO NOPENGOO ON YOUTUBE",
+    type: ActivityType.Streaming,
+    url: "https://www.youtube.com/watch?v=Yw_ODTfLcbE"
+  });
 })
 
 
@@ -286,7 +304,26 @@ client.on('interactionCreate', async (interaction: CommandInteraction) => {
 
     case `${commandArray[9].name}`:
       slashCommands.slashBonkCommand(interaction, bonkArray, invoker, userToInteract);
-    break;
+    break;const path = require('path');
+    const getAllFiles = require('../utils/getAllFiles');
+    
+    module.exports = (client: { on: (arg0: any, arg1: (arg: any) => Promise<void>) => void; }) => {
+      const eventFolders = getAllFiles(path.join(__dirname, '..', 'events'), true);
+    
+      for (const eventFolder of eventFolders) {
+        let eventFiles = getAllFiles(eventFolder);
+        eventFiles = eventFiles.sort();
+    
+        const eventName = eventFolder.replace(/\\/g, '/').split('/').pop();
+    
+        client.on(eventName, async (arg) => {
+          for (const eventFile of eventFiles) {
+            const eventFunction = require(eventFile);
+            await eventFunction(client, arg);
+          }
+        });
+      }
+    };
 
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P

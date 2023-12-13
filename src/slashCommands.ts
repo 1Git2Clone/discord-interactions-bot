@@ -1,7 +1,7 @@
 /* discord-interactions-bot/src/slashCommands.ts */
 
-// Author:       1Kill2Steal (https://github.com/1Kill2Steal/)
-// DATE:         12.12.2023 (DD/MM/YYYY)
+// Author:       1Kill2Steal (https://github.com/1Kill2Steal/discord-interactions-bot/)
+// DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
 require('dotenv').config(); // CHECK README.md
