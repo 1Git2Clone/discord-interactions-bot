@@ -16,7 +16,6 @@ const { getRandomEmbedElementFromArray } = require('./functions')
 async function helpMessageCommand(message, commandListHeading, commandList) {
   return message.channel.send({
     content: `${commandListHeading}${commandList}`,
-    ephemeral: true,
   });
 }
 
@@ -34,9 +33,7 @@ async function quoteMessageCommand(message, quoteArray){
 // Command for printing out the list of quotes
 async function quotelistMessageCommand(message, quoteListHeading, quoteList){
   return message.channel.send({
-    content: `${quoteListHeading}${quoteList}`,
-    ephemeral: true,
-  });
+    content: `${quoteListHeading}${quoteList}`,});
 }
   
 
