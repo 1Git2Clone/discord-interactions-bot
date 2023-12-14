@@ -7,7 +7,7 @@
 require('dotenv').config(); // CHECK README.md
 require('./functions')
 import { Message, User, EmbedBuilder, CommandInteraction } from 'discord.js';
-import { getRandomEmbedElementFromArray } from "./functions";
+import { getRandomEmbedElementFromArray } from "../functions";
 
 
 // ! SLASH COMMANDS !

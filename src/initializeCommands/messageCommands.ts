@@ -6,7 +6,7 @@
 
 require('./functions')
 import { Message, User, EmbedBuilder } from 'discord.js';
-import { getRandomEmbedElementFromArray } from "./functions";
+import { getRandomEmbedElementFromArray } from "../functions";
 
 
 // ! MESSAGE COMMANDS !
