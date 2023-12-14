@@ -34,7 +34,8 @@ async function slashQuoteCommand(
   interaction: CommandInteraction,
   quoteArray: string[]
   ): Promise<void> {
-  const index = interaction.options.getInteger('quote_number') - 1; // It still works *shrugs*
+    // @ts-ignore
+  const index = (interaction.options.getInteger('quote_number') || 0) - 1; // It still works *shrugs*
 
   const randomIndex = ( index >= 0 && (index <= quoteArray.length - 1) ) ? (index) : ( Math.floor(Math.random() * quoteArray.length) );
 
