@@ -33,6 +33,9 @@ const mongoose = require('mongoose');
     mongoose.set('strictQuery', false);
     await mongoose.connect(process.env.MONGODB_URI);
     console.log(`Connected to DB.`);
+
+    // STARTS THE BOT WITH THE AUTHENICATED IN (.env) TOKEN
+    client.login(process.env.TOKEN);
   } catch (error) {
     console.log(error);
   }
@@ -182,7 +185,8 @@ client.on('messageCreate', async (message: Message) => {
   if(message.author.bot) {
     return;
   }
-  
+
+  require('./messageCreate/giveUserXp')(client, message); 
 
   // Entire scope of messageCreate so i can reuse it
   const userToInteract = message.mentions.users.first();
@@ -304,26 +308,7 @@ client.on('interactionCreate', async (interaction: CommandInteraction) => {
 
     case `${commandArray[9].name}`:
       slashCommands.slashBonkCommand(interaction, bonkArray, invoker, userToInteract);
-    break;const path = require('path');
-    const getAllFiles = require('../utils/getAllFiles');
-    
-    module.exports = (client: { on: (arg0: any, arg1: (arg: any) => Promise<void>) => void; }) => {
-      const eventFolders = getAllFiles(path.join(__dirname, '..', 'events'), true);
-    
-      for (const eventFolder of eventFolders) {
-        let eventFiles = getAllFiles(eventFolder);
-        eventFiles = eventFiles.sort();
-    
-        const eventName = eventFolder.replace(/\\/g, '/').split('/').pop();
-    
-        client.on(eventName, async (arg) => {
-          for (const eventFile of eventFiles) {
-            const eventFunction = require(eventFile);
-            await eventFunction(client, arg);
-          }
-        });
-      }
-    };
+    break;
 
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
@@ -331,9 +316,3 @@ client.on('interactionCreate', async (interaction: CommandInteraction) => {
   }
 
 });
-
-
-// STARTS THE BOT WITH THE AUTHENICATED IN (.env) TOKEN
-
-
-client.login(process.env.TOKEN);
