@@ -64,11 +64,18 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashPunchCommand(interaction, data.punchArray, invoker, userToInteract);
     break;
 
+    // Slash command for bonking the user (analogous to !punch)
     case `${data.commandArray[9].name}`:
       slashCommands.slashBonkCommand(interaction, data.bonkArray, invoker, userToInteract);
     break;
 
+    // Slash command for displaying a random Ryan Gosling GIF.
     case `${data.commandArray[10].name}`:
+      slashCommands.slashDriveCommand(interaction, data.driveArray);
+    break;
+
+    // Slash command for displaying the user level (NO MESSAGE COMMAND VARIANT)
+    case `${data.commandArray[11].name}`:
       slashCommands.slashLevelCommand(interaction, invoker, userToInteract);
     break;
 

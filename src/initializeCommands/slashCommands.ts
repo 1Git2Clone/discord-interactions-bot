@@ -208,7 +208,7 @@ async function slashBonkCommand(
 
   if (userToInteract && invoker !== userToInteract) {
     await interaction.reply({
-      content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
+      content: `*${invoker.toString()} bonks ${userToInteract.toString()}*`,
       embeds: [bonkEmbed],
     });
   }
@@ -218,6 +218,17 @@ async function slashBonkCommand(
       embeds: [bonkEmbed],
     });
   }
+}
+
+// Slash command for sending a Ryan Gosling gif
+async function slashDriveCommand(
+  interaction: CommandInteraction,
+  driveArray: string[],
+  ): Promise<void> {
+  const driveEmbed = getRandomEmbedElementFromArray(driveArray);
+  await interaction.reply({
+    embeds: [driveEmbed],
+  });
 }
 
 
@@ -302,5 +313,6 @@ module.exports = {
   slashSlapCommand,
   slashPunchCommand,
   slashBonkCommand,
+  slashDriveCommand,
   slashLevelCommand,
 }

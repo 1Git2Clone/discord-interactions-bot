@@ -71,7 +71,7 @@ const commands = [
       {
         name: 'user',
         type: 6, // Type 6 represents a user
-        description: 'The user to pat',
+        description: 'The user to kiss',
         required: true,
       },
     ],
@@ -83,7 +83,7 @@ const commands = [
       {
         name: 'user',
         type: 6, // Type 6 represents a user
-        description: 'The user to pat',
+        description: 'The user to slap',
         required: true,
       },
     ],
@@ -95,7 +95,7 @@ const commands = [
       {
         name: 'user',
         type: 6, // Type 6 represents a user
-        description: 'The user to pat',
+        description: 'The user to punch',
         required: true,
       },
     ],
@@ -107,14 +107,14 @@ const commands = [
       {
         name: 'user',
         type: 6, // Type 6 represents a user
-        description: 'The user to pat',
+        description: 'The user to bonk',
         required: true,
       },
     ],
   },
   {
     name: 'level',
-    description: 'Bonk the mentioned user',
+    description: 'Display the level of a user. (You by default)',
     options: [
       {
         name: 'target-user',
@@ -123,6 +123,10 @@ const commands = [
         required: false,
       },
     ],
+  },
+  {
+    name: 'drive',
+    description: 'Sends a random Ryan Gosling GIF.'
   },
 ];
 

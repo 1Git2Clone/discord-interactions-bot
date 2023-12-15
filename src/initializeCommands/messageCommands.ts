@@ -160,6 +160,18 @@ async function bonkMessageCommand(
   });
 }
 
+// Command for sending a random Ryan Gosling GIF
+async function driveMessageCommand(
+  message: Message,
+  driveArray: string[]
+): Promise<void> {
+  const driveEmbed = getRandomEmbedElementFromArray(driveArray);
+
+  await message.channel.send({
+    embeds: [driveEmbed],
+  });
+}
+
 
 
 // ! EXPORTING FUNCTIONS !
@@ -175,5 +187,6 @@ module.exports = {
   kissMessageCommand,
   slapMessageCommand,
   punchMessageCommand,
-  bonkMessageCommand
+  bonkMessageCommand,
+  driveMessageCommand
 }

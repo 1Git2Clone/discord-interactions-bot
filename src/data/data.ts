@@ -51,6 +51,14 @@ export const bonkArray = [
   "https://media.discordapp.net/attachments/614790390020833280/1184200806245879828/atonnic-bonk.gif?ex=658b1bf1&is=6578a6f1&hm=007abbc5c5b7ec6140d752ebe6a1337a6ff461fa09a607539b1226ae984b7c97&=",
   "https://media.discordapp.net/attachments/614790390020833280/1184200806673686608/shinji-shinji-broom.gif?ex=658b1bf1&is=6578a6f1&hm=6d0d271fb33ad7d3e42a70365d7e10460bb219608a20c1093b8c9a9c3bb18ef8&=",
 ]
+export const driveArray = [
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222721546756216/giphy.gif?ex=658ed3ad&is=657c5ead&hm=cea95c4af9bacd8149dae0a5be2b346b93895cd50dbacb2963758cd5cc6bcb92&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222722037481573/ryan-gosling-car.gif?ex=658ed3ad&is=657c5ead&hm=7c2236466b86584a766c3ac9dd09d4535dcf014f85738d1aa346fcf7aaf540b4&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222722545000488/ryan-gosling.gif?ex=658ed3ad&is=657c5ead&hm=8632f3e6c89fe7acf9491e760e2802185ec3bee4732add59709f2ff8e5346c0b&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222722926674013/ryan-gosling-ryan-gosling-drive.gif?ex=658ed3ad&is=657c5ead&hm=a2be391959c019bce6143fcfc5c6c0aab7c913ee649015d2628f287eacab5433&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222728068911134/ryan-gosling-drive.gif?ex=658ed3ae&is=657c5eae&hm=dd108c6cefac19939b032bec79cd89aae1a8450cb62e49296a35af78413fc0a1&",
+  "https://cdn.discordapp.com/attachments/1180115044218978425/1185222728568021042/driving-ryan-gosling.gif?ex=658ed3ae&is=657c5eae&hm=ad2b217dac9dce31932ce40edb369ade1870195f9c4b7cfa34754cacf7e75f27&",
+]
 
 
 
@@ -63,48 +71,52 @@ export const COMMAND_PREFIX = "!";
 export const commandArray = [
   {
     name: "help",
-    description: "Display help information"
+    description: `Display help information. (${COMMAND_PREFIX}) (I don't reccomend using it if its "!help", because its a very commonly used command by other bots.)`
   },
   {
     name: "quote",
-    description: "Get a random quote"
+    description: `Get a random quote. (${COMMAND_PREFIX})`
   },
   {
     name: "quotelist",
-    description: "List all available quotes"
+    description: `List all available quotes. (${COMMAND_PREFIX})`
   },
   {
     name: "tieup",
-    description: "Tie up a user"
+    description: `Tie up a user. (${COMMAND_PREFIX})`
   },
   {
     name: "hug",
-    description: "Hug a user"
+    description: `Hug a user. (${COMMAND_PREFIX})`
   },
   {
     name: "pat",
-    description: "Pat a user"
+    description: `Pat a user. (${COMMAND_PREFIX})`
   },
   {
     name: "kiss",
-    description: "Kiss a user"
+    description: `Kiss a user. (${COMMAND_PREFIX})`
   },
   {
     name: "slap",
-    description: "Slap a user"
+    description: `Slap a user. (${COMMAND_PREFIX})`
   },
   {
     name: "punch",
-    description: "Punch a user"
+    description: `Punch a user. (${COMMAND_PREFIX})`
   },
   {
     name: "bonk",
-    description: "Bonk someone who's horni"
+    description: `Bonk someone who's horni. (${COMMAND_PREFIX})`
+  },
+  {
+    name: "drive",
+    description: `Sends a random Ryan Gosling GIF. (${COMMAND_PREFIX})`
   },
   {
     name: "level",
-    description: "Displays you/the mentioned user's level."
-  }
+    description: `Displays you/the mentioned user's level.`
+  },
 ]
 
 
@@ -116,5 +128,6 @@ export const quoteList = quoteArray.map((quote, i) => `**${i+1}:** ${quote}`).jo
 export const commandListHeading =`# ALL ${COMMAND_PREFIX} COMMANDS ONLY WORK ON MESSAGE REPLIES.\n
   Aka "${COMMAND_PREFIX}${commandArray[3].name}" for example works only by REPLYING to the user and not mentioning them.\n
   In the case where you want to mention someone, please use the Slash (/) commands.\n
+  All commands with "(${COMMAND_PREFIX})" at the end of their description have a replying usage as well as the slash variant.\n 
   Here's the list of all the available commands:`;
-export const commandList = commandArray.map(command => `**${COMMAND_PREFIX}${command.name} OR /${command.name}** ${command.description}`).join('\n');
+export const commandList = commandArray.map(command => `**/${command.name}** ${command.description}`).join('\n');
