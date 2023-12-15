@@ -68,6 +68,7 @@ export const killArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1185293538485870724/dead.gif?ex=658f15a1&is=657ca0a1&hm=bb00931507db300a86087fd31590916da5fb20e4bf68459ec337725d0d74a6ae&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1185293538875936899/die-kill.gif?ex=658f15a1&is=657ca0a1&hm=d93d571e253152085d6ef1b7c36ea140a20181f22d90f03ea2e31b4460b23c4b&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1185293539232460820/ira-gamagoori-attack.gif?ex=658f15a1&is=657ca0a1&hm=cc342930e5cf319f374e974e1ad421a292f131a5f5d8aff1d345901b535a9daf&",
+  "https://cdn.discordapp.com/attachments/904591166580879400/1185318839177728020/wasted-wastedmidi.gif?ex=658f2d31&is=657cb831&hm=0bfccf35f557f0ba356a374d70976a8b7a7197a0d402fd837c92111cf7100326&",
 ]
 
 
