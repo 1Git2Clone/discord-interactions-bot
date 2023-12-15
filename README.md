@@ -12,7 +12,7 @@ Planning to make even more commands in the future, feel free to tell me suggesti
  * `/quote`                     | **1 OPTION:** "quote_number" *(optional)* - Uses the numbering from `/quotelist`
  * `/quotelist`                 | **8 for now**
 
-* **USER INTERACTIONS**       // FOR ALL: **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
+* **USER INTERACTIONS**         // FOR ALL: **1 OPTION:** "user" *(REQUIRED)* - Specifies the user to do the action to.
  * `/tieup`
  * `/hug`
  * `/pat`
@@ -20,8 +20,15 @@ Planning to make even more commands in the future, feel free to tell me suggesti
  * `/slap`
  * `/punch`
  * `/bonk`
-* **ALL USER INTERACTIONS HAVE "!" (EXCLAIMATION MARK) ANALOGUES IN CASE YOU WANT TO DO THE INTERACTION WITH A REPLY TO THE USER**
-* **EXAMPLE:** `!pat` *(in a message reply with the mentioned user)* works.
+ * `/nom`
+ * `/eat`                       // Same as `/nom`
+ * `/kill`
+
+* **FOR FUN**
+ * `/drive`                     // Send a random Ryan Gosling GIF :P
+
+* **LEVELING SYSTEM**           | The bot has a perfectly functional leveling system xp required to level is level*100 & you get 5-15xp per message every 1 minute.
+ * `/level`                     // Displays your rank and level by default, you can also specify the user (optional).
 
 Made this bot for a discord server: https://discord.gg/nopengoo
 
