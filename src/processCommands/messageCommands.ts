@@ -27,8 +27,6 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
   const user = getUserFromMention(args[0], client);
   const userToInteract = message.mentions.users.first() ? message.mentions.users.first() : user;
 
-  if (!userToInteract) { message.reply('No user mentioned.'); return; }
-
   switch (command) {
     // Help command. Gives a small description about the commands and lists all of them.
     case `${data.commandArray[0].name}`:
