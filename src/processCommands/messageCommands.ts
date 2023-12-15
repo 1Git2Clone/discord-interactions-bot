@@ -71,8 +71,8 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
     await messageCommands.bonkMessageCommand(message, data.bonkArray, invoker, userToInteract);
   }
 
-  if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[10].name}` && userToInteract) && message.member) {
-    await messageCommands.bonkMessageCommand(message, data.driveArray);
+  if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[10].name}`) && message.member) {
+    await messageCommands.driveMessageCommand(message, data.driveArray);
   }
 
 };
