@@ -59,6 +59,11 @@ export const driveArray = [
   "https://cdn.discordapp.com/attachments/1180115044218978425/1185222728068911134/ryan-gosling-drive.gif?ex=658ed3ae&is=657c5eae&hm=dd108c6cefac19939b032bec79cd89aae1a8450cb62e49296a35af78413fc0a1&",
   "https://cdn.discordapp.com/attachments/1180115044218978425/1185222728568021042/driving-ryan-gosling.gif?ex=658ed3ae&is=657c5eae&hm=ad2b217dac9dce31932ce40edb369ade1870195f9c4b7cfa34754cacf7e75f27&",
 ]
+export const nomArray = [
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185289189097476216/vsauce-michael-stevens.gif?ex=658f1194&is=657c9c94&hm=06d6794b1d8ede7f2e7b88a40db46e7e251e4c29fbc2a86338ae2b0358b58dbc&",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185289189697278162/eatin-anima.gif?ex=658f1194&is=657c9c94&hm=72d465b5ab3ecc74dcc88e70becf6b0a4bb2e436c3d42ab42a85f298a93f8534&",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185289190070550688/paimon-genshin.gif?ex=658f1194&is=657c9c94&hm=3856e3ecd75cb20477ac97544dd3632c4a3c964e094719950856cb7dfe4194e4&",
+]
 
 
 
@@ -114,6 +119,18 @@ export const commandArray = [
     description: `Sends a random Ryan Gosling GIF. (${COMMAND_PREFIX})`
   },
   { // 11
+    name: "nom",
+    description: `Noms a user. (${COMMAND_PREFIX})`
+  },
+  { // 12
+    name: "eat",
+    description: `Eats a user. (same as nom) (${COMMAND_PREFIX})`
+  },
+  { // 13
+    name: "kill",
+    description: `Kills a user. D: (${COMMAND_PREFIX})`
+  },
+  { // 14
     name: "level",
     description: `Displays you/the mentioned user's level.`
   },

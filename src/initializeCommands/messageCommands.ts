@@ -172,6 +172,19 @@ async function driveMessageCommand(
   });
 }
 
+async function nomMessageCommand(
+  message: Message,
+  nomArray: string[],
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  const nomEmbed = getRandomEmbedElementFromArray(nomArray);
+
+  await message.channel.send({
+    content: `*${invoker.toString()} noms ${userToInteract.toString()}*`,
+    embeds: [nomEmbed],
+  });
+}
 
 
 // ! EXPORTING FUNCTIONS !
@@ -188,5 +201,7 @@ module.exports = {
   slapMessageCommand,
   punchMessageCommand,
   bonkMessageCommand,
-  driveMessageCommand
+  driveMessageCommand,
+  nomMessageCommand,
+  
 }

@@ -74,8 +74,22 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashDriveCommand(interaction, data.driveArray);
     break;
 
+    // Slash command for nomming the user :D
+    case`${data.commandArray[11].name}`:
+      slashCommands.slashNomCommand(interaction, data.nomArray, invoker, userToInteract);
+    break;
+
+    // Slash command for eating the user (same as nom) :D
+    case`${data.commandArray[12].name}`:
+      slashCommands.slashNomCommand(interaction, data.nomArray, invoker, userToInteract);
+    break;
+
+    // Slash command for killing the user D:
+    case`${data.commandArray[13].name}`:
+      
+    break;
     // Slash command for displaying the user level (NO MESSAGE COMMAND VARIANT)
-    case `${data.commandArray[11].name}`:
+    case `${data.commandArray[14].name}`:
       slashCommands.slashLevelCommand(interaction, invoker, userToInteract);
     break;
 

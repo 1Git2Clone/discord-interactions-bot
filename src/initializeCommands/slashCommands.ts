@@ -231,6 +231,27 @@ async function slashDriveCommand(
   });
 }
 
+async function slashNomCommand(
+  interaction: CommandInteraction,
+  nomArray: string[],
+  invoker: User,
+  userToInteract: User
+  ): Promise<void> {
+  const nomEmbed = getRandomEmbedElementFromArray(nomArray);
+
+  if (userToInteract && invoker !== userToInteract) {
+    await interaction.reply({
+      content: `*${invoker.toString()} noms ${userToInteract.toString()}*`,
+      embeds: [nomEmbed],
+    });
+  }
+  else {
+    await interaction.reply({
+      content: `*${invoker.toString()} eats themselves*`,
+      embeds: [nomEmbed],
+    });
+  }
+}
 
 const Level = require('../models/level')
 const calculateLevelXp = require('../utils/calculateLevelXp')
@@ -314,5 +335,6 @@ module.exports = {
   slashPunchCommand,
   slashBonkCommand,
   slashDriveCommand,
+  slashNomCommand,
   slashLevelCommand,
 }
