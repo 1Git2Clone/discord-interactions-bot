@@ -276,7 +276,7 @@ async function slashLevelCommand(
     .setLevel(fetchedLevel.level)
     .setCurrentXP(fetchedLevel.xp)
     .setRequiredXP(calculateLevelXp(fetchedLevel.level))
-    .setProgressBar('#1A000D', 'COLOR')
+    .setProgressBar('#FFC300', 'COLOR')
     .setUsername(targetUserObj.user.username)
 
   const data = await rank.build();
