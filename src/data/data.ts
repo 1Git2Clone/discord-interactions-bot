@@ -149,10 +149,11 @@ export const quoteList = quoteArray.map((quote, i) => `**${i+1}:** ${quote}`).jo
 
 // prematurely wrapped all the commands for the !help and /help commands
 export const commandListHeading =
-`Feel free to reply with a mention with any of the ${COMMAND_PREFIX}\n
-commands or type the ${COMMAND_PREFIX} command alongside a mention.\n
-Alternatively, you can use slash (/) commands. All commands have at\n
-least a slash variant and those that have an ${COMMAND_PREFIX} variant\n
+`# ~ *(${COMMAND_PREFIX}) Commands list (${COMMAND_PREFIX}) ~*
+Feel free to reply with a mention with any of the ${COMMAND_PREFIX}
+commands or type the ${COMMAND_PREFIX} command alongside a mention.
+Alternatively, you can use slash (/) commands. All commands have at
+least a slash variant and those that have an ${COMMAND_PREFIX} variant
 have an (${COMMAND_PREFIX}) at the end of their definition.
 ### Here's the list of all the available commands:\n`;
 export const commandList = commandArray.map(command => `**/${command.name}** | ${command.description}`).join('\n');
