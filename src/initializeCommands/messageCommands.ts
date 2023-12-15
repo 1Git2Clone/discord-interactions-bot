@@ -57,6 +57,7 @@ async function tieupMessageCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
   if (invoker !== userToInteract) {
     const tieupEmbed = getRandomEmbedElementFromArray(tieupArray)
     await message.channel.send({
@@ -76,6 +77,8 @@ async function hugMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   const hugEmbed = getRandomEmbedElementFromArray(hugArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -99,6 +102,8 @@ async function patMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   if (userToInteract && invoker !== userToInteract) {
     const patEmbed = getRandomEmbedElementFromArray(patArray);
     await message.reply({
@@ -121,6 +126,8 @@ async function kissMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   if (userToInteract && invoker !== userToInteract) {
     const kissEmbed = getRandomEmbedElementFromArray(kissArray);
     await message.reply({
@@ -142,6 +149,8 @@ async function slapMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   if (userToInteract && invoker !== userToInteract) {
     const slapEmbed = getRandomEmbedElementFromArray(slapArray);
     await message.reply({
@@ -163,6 +172,8 @@ async function punchMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   if (userToInteract && invoker !== userToInteract) {
     const punchEmbed = getRandomEmbedElementFromArray(punchArray);
     await message.reply({
@@ -184,6 +195,8 @@ async function bonkMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   const bonkEmbed = getRandomEmbedElementFromArray(bonkArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -218,6 +231,8 @@ async function nomMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   const nomEmbed = getRandomEmbedElementFromArray(nomArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -241,6 +256,8 @@ async function killMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+
   if (userToInteract && invoker !== userToInteract) {
     const killEmbed = getRandomEmbedElementFromArray(killArray);
     await message.reply({
