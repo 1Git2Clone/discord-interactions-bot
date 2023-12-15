@@ -69,51 +69,51 @@ export const driveArray = [
 export const COMMAND_PREFIX = "!";
 
 export const commandArray = [
-  {
+  { // 0
     name: "help",
     description: `Display help information. (${COMMAND_PREFIX}) (I don't reccomend using it if its "!help", because its a very commonly used command by other bots.)`
   },
-  {
+  { // 1
     name: "quote",
     description: `Get a random quote. (${COMMAND_PREFIX})`
   },
-  {
+  { // 2
     name: "quotelist",
     description: `List all available quotes. (${COMMAND_PREFIX})`
   },
-  {
+  { // 3
     name: "tieup",
     description: `Tie up a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 4
     name: "hug",
     description: `Hug a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 5
     name: "pat",
     description: `Pat a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 6
     name: "kiss",
     description: `Kiss a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 7
     name: "slap",
     description: `Slap a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 8
     name: "punch",
     description: `Punch a user. (${COMMAND_PREFIX})`
   },
-  {
+  { // 9
     name: "bonk",
     description: `Bonk someone who's horni. (${COMMAND_PREFIX})`
   },
-  {
+  { // 10
     name: "drive",
     description: `Sends a random Ryan Gosling GIF. (${COMMAND_PREFIX})`
   },
-  {
+  { // 11
     name: "level",
     description: `Displays you/the mentioned user's level.`
   },
