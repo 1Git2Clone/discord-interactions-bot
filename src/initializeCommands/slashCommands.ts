@@ -1,11 +1,11 @@
-/* discord-interactions-bot/src/slashCommands.ts */
+/* discord-interactions-bot/src/initializeCommands/slashCommands.ts */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/discord-interactions-bot/)
 // DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
 require('dotenv').config(); // CHECK README.md
-require('./functions')
+require('../functions')
 import { Message, User, EmbedBuilder, CommandInteraction } from 'discord.js';
 import { getRandomEmbedElementFromArray } from "../functions";
 

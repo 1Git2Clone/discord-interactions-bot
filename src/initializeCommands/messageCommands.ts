@@ -1,10 +1,10 @@
-/* discord-interactions-bot/src/messageCommands.ts */
+/* discord-interactions-bot/src/initializeCommands/messageCommands.ts */
 
 // Author:       1Kill2Steal (https://github.com/1Kill2Steal/discord-interactions-bot/)
 // DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
-require('./functions')
+require('../functions')
 import { Message, User, EmbedBuilder } from 'discord.js';
 import { getRandomEmbedElementFromArray } from "../functions";
 
