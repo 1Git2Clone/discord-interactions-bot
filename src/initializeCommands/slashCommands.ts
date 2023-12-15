@@ -67,16 +67,13 @@ async function slashTieupCommand(
 ): Promise<void> {
   if (invoker !== userToInteract) {
     const tieupEmbed = getRandomEmbedElementFromArray(tieupArray);
-
     await interaction.reply({
       content: `*${invoker.toString()} ties up ${userToInteract.toString()}*`,
       embeds: [tieupEmbed],
-      ephemeral: false, // Set ephemeral to true if you want the response to be visible only to the user who triggered the command
     });
   } else {
     await interaction.reply({
       content: `${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`,
-      ephemeral: false,
     });
   }
 }
@@ -112,9 +109,8 @@ async function slashPatCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
-  const patEmbed = getRandomEmbedElementFromArray(patArray);
-
   if (userToInteract && invoker !== userToInteract) {
+    const patEmbed = getRandomEmbedElementFromArray(patArray);
     await interaction.reply({
       content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
       embeds: [patEmbed],
@@ -135,9 +131,8 @@ async function slashKissCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
-  const kissEmbed = getRandomEmbedElementFromArray(kissArray);
-
   if (userToInteract && invoker !== userToInteract) {
+    const kissEmbed = getRandomEmbedElementFromArray(kissArray);
     await interaction.reply({
       content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
       embeds: [kissEmbed],
@@ -158,9 +153,8 @@ async function slashSlapCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
-  const slapEmbed = getRandomEmbedElementFromArray(slapArray);
-
   if (userToInteract && invoker !== userToInteract) {
+    const slapEmbed = getRandomEmbedElementFromArray(slapArray);
     await interaction.reply({
       content: `*${invoker.toString()} slaps ${userToInteract.toString()}*`,
       embeds: [slapEmbed],
@@ -181,9 +175,8 @@ async function slashPunchCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
-  const punchEmbed = getRandomEmbedElementFromArray(punchArray);
-
   if (userToInteract && invoker !== userToInteract) {
+    const punchEmbed = getRandomEmbedElementFromArray(punchArray);
     await interaction.reply({
       content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
       embeds: [punchEmbed],

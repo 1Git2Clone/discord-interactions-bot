@@ -96,7 +96,7 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
 
     // Message command for killing the user D:
     case`${data.commandArray[13].name}`:
-      messageCommands.killMessageCommand(message, data.killArray, invoker, userToInteract);
+      messageCommands.killMessageCommand(message, data.killArray, data.slapArray, invoker, userToInteract);
     break;
 
     default: // No command case, I dont even think its needed to exist but oh well...

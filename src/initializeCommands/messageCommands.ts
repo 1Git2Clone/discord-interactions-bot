@@ -45,7 +45,8 @@ async function quotelistMessageCommand(
   quoteList: string[]
   ): Promise<void> {
   await message.channel.send({
-    content: `${quoteListHeading}${quoteList}`,});
+    content: `${quoteListHeading}${quoteList}`,
+  });
 }
   
 
@@ -77,10 +78,17 @@ async function hugMessageCommand(
 ): Promise<void> {
   const hugEmbed = getRandomEmbedElementFromArray(hugArray);
 
-  await message.channel.send({
-    content: `*${invoker.toString()} hugs ${userToInteract.toString()}*`,
-    embeds: [hugEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    await message.reply({
+      content: `*${invoker.toString()} hugs ${userToInteract.toString()}*`,
+      embeds: [hugEmbed],
+    });
+  } else {
+    await message.reply({
+      content: `*${invoker.toString()} hugs himself...* (:sob:)`,
+      embeds: [hugEmbed],
+    });
+  }
 }
   
 
@@ -91,12 +99,18 @@ async function patMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
-  const patEmbed = getRandomEmbedElementFromArray(patArray);
-
-  await message.channel.send({
-    content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
-    embeds: [patEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    const patEmbed = getRandomEmbedElementFromArray(patArray);
+    await message.reply({
+      content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
+      embeds: [patEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `How does one even pat themselves?? :sob::sob::sob:`,
+    });
+  }
 }
   
 
@@ -107,12 +121,18 @@ async function kissMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
-  const kissEmbed = getRandomEmbedElementFromArray(kissArray);
-
-  await message.channel.send({
-    content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
-    embeds: [kissEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    const kissEmbed = getRandomEmbedElementFromArray(kissArray);
+    await message.reply({
+      content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
+      embeds: [kissEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `I'm sorry... :sob:`,
+    });
+  }
 }
 
 // Command for slapping a user
@@ -122,12 +142,18 @@ async function slapMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
-  const slapEmbed = getRandomEmbedElementFromArray(slapArray);
-
-  await message.channel.send({
-    content: `*${invoker.toString()} slaps ${userToInteract.toString()}*`,
-    embeds: [slapEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    const slapEmbed = getRandomEmbedElementFromArray(slapArray);
+    await message.reply({
+      content: `*${invoker.toString()} slaps ${userToInteract.toString()}*`,
+      embeds: [slapEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `Please don't slap yourself! :sob:`,
+    });
+  }
 }
 
 // Command for punching a user
@@ -137,12 +163,18 @@ async function punchMessageCommand(
   invoker: User,
   userToInteract: User
 ): Promise<void> {
-  const punchEmbed = getRandomEmbedElementFromArray(punchArray);
-
-  await message.channel.send({
-    content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
-    embeds: [punchEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    const punchEmbed = getRandomEmbedElementFromArray(punchArray);
+    await message.reply({
+      content: `*${invoker.toString()} punches ${userToInteract.toString()}*`,
+      embeds: [punchEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `Please don't punch yourself! :sob:`,
+    });
+  }
 }
 
 // Command for bonking a user
@@ -154,10 +186,18 @@ async function bonkMessageCommand(
 ): Promise<void> {
   const bonkEmbed = getRandomEmbedElementFromArray(bonkArray);
 
-  await message.channel.send({
-    content: `*${invoker.toString()} bonks ${userToInteract.toString()}*`,
-    embeds: [bonkEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    await message.reply({
+      content: `*${invoker.toString()} bonks ${userToInteract.toString()}*`,
+      embeds: [bonkEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `*${invoker.toString()} bonks themselves*`,
+      embeds: [bonkEmbed],
+    });
+  }
 }
 
 // Command for sending a random Ryan Gosling GIF
@@ -180,24 +220,41 @@ async function nomMessageCommand(
 ): Promise<void> {
   const nomEmbed = getRandomEmbedElementFromArray(nomArray);
 
-  await message.channel.send({
-    content: `*${invoker.toString()} noms ${userToInteract.toString()}*`,
-    embeds: [nomEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    await message.reply({
+      content: `*${invoker.toString()} noms ${userToInteract.toString()}*`,
+      embeds: [nomEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `*${invoker.toString()}. Why do you wanna eat yourself?*`,
+      embeds: [nomEmbed],
+    });
+  }
 }
 
 async function killMessageCommand(
   message: Message,
   killArray: string[],
+  slapArray: string[],
   invoker: User,
   userToInteract: User
 ): Promise<void> {
-  const killEmbed = getRandomEmbedElementFromArray(killArray);
-
-  await message.channel.send({
-    content: `*${invoker.toString()} kills ${userToInteract.toString()}*`,
-    embeds: [killEmbed],
-  });
+  if (userToInteract && invoker !== userToInteract) {
+    const killEmbed = getRandomEmbedElementFromArray(killArray);
+    await message.reply({
+      content: `*${invoker.toString()} kills ${userToInteract.toString()}*`,
+      embeds: [killEmbed],
+    });
+  }
+  else {
+    const slapEmbed = getRandomEmbedElementFromArray(slapArray);
+    await message.reply({
+      content: `NOO! DON'T DO THATTT!`,
+      embeds: [slapEmbed],
+    });
+  }
 }
 
 // ! EXPORTING FUNCTIONS !
