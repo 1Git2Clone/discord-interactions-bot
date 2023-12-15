@@ -152,5 +152,5 @@ export const commandListHeading =`# ALL ${COMMAND_PREFIX} COMMANDS ONLY WORK ON 
   Aka "${COMMAND_PREFIX}${commandArray[3].name}" for example works only by REPLYING to the user and not mentioning them.\n
   In the case where you want to mention someone, please use the Slash (/) commands.\n
   All commands with "(${COMMAND_PREFIX})" at the end of their description have a replying usage as well as the slash variant.\n 
-  Here's the list of all the available commands:`;
+  Here's the list of all the available commands:\n`;
 export const commandList = commandArray.map(command => `**/${command.name}** ${command.description}`).join('\n');
