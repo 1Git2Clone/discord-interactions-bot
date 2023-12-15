@@ -27,7 +27,7 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
   const user = getUserFromMention(args[0], client);
   const userToInteract = message.mentions.users.first() ? message.mentions.users.first() : user;
 
-  if (!userToInteract) {
+  if (!userToInteract && (command != data.commandArray[0].name || command != data.commandArray[10].name) ) {
     message.reply('No user mentioned.');
     return;
   }
