@@ -148,9 +148,11 @@ export const quoteListHeading = `Here are the available quotes:\n`;
 export const quoteList = quoteArray.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
 
 // prematurely wrapped all the commands for the !help and /help commands
-export const commandListHeading =`# ALL ${COMMAND_PREFIX} COMMANDS ONLY WORK ON MESSAGE REPLIES.\n
-  Aka "${COMMAND_PREFIX}${commandArray[3].name}" for example works only by REPLYING to the user and not mentioning them.\n
-  In the case where you want to mention someone, please use the Slash (/) commands.\n
-  All commands with "(${COMMAND_PREFIX})" at the end of their description have a replying usage as well as the slash variant.\n 
-  Here's the list of all the available commands:\n`;
-export const commandList = commandArray.map(command => `**/${command.name}** ${command.description}`).join('\n');
+export const commandListHeading =
+`Feel free to reply with a mention with any of the ${COMMAND_PREFIX}\n
+commands or type the ${COMMAND_PREFIX} command alongside a mention.\n
+Alternatively, you can use slash (/) commands. All commands have at\n
+least a slash variant and those that have an ${COMMAND_PREFIX} variant\n
+have an (${COMMAND_PREFIX}) at the end of their definition.
+### Here's the list of all the available commands:\n`;
+export const commandList = commandArray.map(command => `**/${command.name}** | ${command.description}`).join('\n');
