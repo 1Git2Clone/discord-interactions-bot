@@ -88,19 +88,19 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
 
   // Command for nomming a user
   if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[11].name}` && userToInteract) && message.member) {
-    await messageCommands.bonkMessageCommand(message, data.nomArray, invoker, userToInteract);
+    await messageCommands.nomMessageCommand(message, data.nomArray, invoker, userToInteract);
     return;
   }
 
   // Command for eating a user
   if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[12].name}` && userToInteract) && message.member) {
-    await messageCommands.bonkMessageCommand(message, data.nomArray, invoker, userToInteract);
+    await messageCommands.nomMessageCommand(message, data.nomArray, invoker, userToInteract);
     return;
   }
   
   // Command for killing the user
   if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[13].name}` && userToInteract) && message.member) {
-    await messageCommands.bonkMessageCommand(message, data.killArray, data.slapArray, invoker, userToInteract);
+    await messageCommands.killMessageCommand(message, data.killArray, data.slapArray, invoker, userToInteract);
     return;
   }
 
