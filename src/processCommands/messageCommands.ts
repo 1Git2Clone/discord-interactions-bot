@@ -97,5 +97,11 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
     await messageCommands.bonkMessageCommand(message, data.nomArray, invoker, userToInteract);
     return;
   }
+  
+  // Command for killing the user
+  if ( (message.content.toLowerCase() === `${data.COMMAND_PREFIX}${data.commandArray[13].name}` && userToInteract) && message.member) {
+    await messageCommands.bonkMessageCommand(message, data.killArray, data.slapArray, invoker, userToInteract);
+    return;
+  }
 
 };

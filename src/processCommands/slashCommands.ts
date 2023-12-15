@@ -86,8 +86,9 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
 
     // Slash command for killing the user D:
     case`${data.commandArray[13].name}`:
-      
+      slashCommands.slashKillCommand(interaction, data.killArray, invoker, userToInteract);
     break;
+
     // Slash command for displaying the user level (NO MESSAGE COMMAND VARIANT)
     case `${data.commandArray[14].name}`:
       slashCommands.slashLevelCommand(interaction, invoker, userToInteract);

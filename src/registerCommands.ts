@@ -128,6 +128,42 @@ const commands = [
     name: 'drive',
     description: 'Sends a random Ryan Gosling GIF.'
   },
+  {
+    name: 'nom',
+    description: 'Nom the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to nom',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'eat',
+    description: 'Eat the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to eat',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'kill',
+    description: 'Kill the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to kill',
+        required: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

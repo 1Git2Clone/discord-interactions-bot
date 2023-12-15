@@ -247,8 +247,31 @@ async function slashNomCommand(
   }
   else {
     await interaction.reply({
-      content: `*${invoker.toString()} eats themselves*`,
+      content: `*${invoker.toString()}. Why do you wanna eat yourself?*`,
       embeds: [nomEmbed],
+    });
+  }
+}
+
+async function slashKillCommand(
+  interaction: CommandInteraction,
+  killArray: string[],
+  slapArray: string[],
+  invoker: User,
+  userToInteract: User
+  ): Promise<void> {
+  if (userToInteract && invoker !== userToInteract) {
+    const killEmbed = getRandomEmbedElementFromArray(killArray);
+    await interaction.reply({
+      content: `*${invoker.toString()} kills ${userToInteract.toString()}*`,
+      embeds: [killEmbed],
+    });
+  }
+  else {
+    const slapEmbed = getRandomEmbedElementFromArray(slapArray);
+    await interaction.reply({
+      content: `NOO! DON'T DO THATTT!`,
+      embeds: [slapEmbed],
     });
   }
 }
@@ -336,5 +359,6 @@ module.exports = {
   slashBonkCommand,
   slashDriveCommand,
   slashNomCommand,
+  slashKillCommand,
   slashLevelCommand,
 }

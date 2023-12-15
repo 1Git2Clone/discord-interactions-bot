@@ -186,6 +186,19 @@ async function nomMessageCommand(
   });
 }
 
+async function killMessageCommand(
+  message: Message,
+  killArray: string[],
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  const killEmbed = getRandomEmbedElementFromArray(killArray);
+
+  await message.channel.send({
+    content: `*${invoker.toString()} kills ${userToInteract.toString()}*`,
+    embeds: [killEmbed],
+  });
+}
 
 // ! EXPORTING FUNCTIONS !
 
@@ -203,5 +216,5 @@ module.exports = {
   bonkMessageCommand,
   driveMessageCommand,
   nomMessageCommand,
-  
+  killMessageCommand,
 }
