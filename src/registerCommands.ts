@@ -112,6 +112,18 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'level',
+    description: 'Bonk the mentioned user',
+    options: [
+      {
+        name: 'target-user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to check level. (Default = You)',
+        required: false,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

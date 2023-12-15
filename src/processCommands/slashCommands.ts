@@ -68,6 +68,10 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashBonkCommand(interaction, data.bonkArray, invoker, userToInteract);
     break;
 
+    case `${data.commandArray[10].name}`:
+      slashCommands.slashLevelCommand(interaction, invoker, userToInteract);
+    break;
+
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
 

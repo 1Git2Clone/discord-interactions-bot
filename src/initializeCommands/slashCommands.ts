@@ -6,7 +6,7 @@
 
 require('dotenv').config(); // CHECK README.md
 require('../functions')
-import { Message, User, EmbedBuilder, CommandInteraction } from 'discord.js';
+import { Message, User, EmbedBuilder, CommandInteraction, AttachmentBuilder } from 'discord.js';
 import { getRandomEmbedElementFromArray } from "../functions";
 
 
@@ -221,6 +221,71 @@ async function slashBonkCommand(
 }
 
 
+const Level = require('../models/level')
+const calculateLevelXp = require('../utils/calculateLevelXp')
+import canvacord from 'canvacord';
+async function slashLevelCommand(
+  interaction: CommandInteraction,
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  if (!interaction.inGuild()) {
+    interaction.reply('You can only run this command inside a server.');
+    return;
+  }
+
+  await interaction.deferReply();
+
+  const mentionedUserId = interaction.options.get('target-user')?.value;
+  const targetUserId = mentionedUserId || interaction.user.id;
+  // @ts-ignore
+  const targetUserObj = await interaction.guild.members.fetch(targetUserId);
+
+  const fetchedLevel = await Level.findOne({
+    userId: targetUserId,
+    // @ts-ignore
+    guildId: interaction.guild.id,
+  });
+
+  if (!fetchedLevel) {
+    interaction.editReply(
+      mentionedUserId
+        ? `${targetUserObj.user.tag} doesn't have any levels yet. Try again when they chat a little more.`
+        : "You don't have any levels yet. Chat a little more and try again."
+    );
+    return;
+  }
+  // @ts-ignore
+  let allLevels = await Level.find({ guildId: interaction.guild.id }).select(
+    '-_id userId level xp'
+  );
+
+  allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
+    if (a.level === b.level) {
+      return b.xp - a.xp;
+    } else {
+      return b.level - a.level;
+    }
+  });
+
+  let currentRank = allLevels.findIndex((lvl: { userId: string | number | boolean; }) => lvl.userId === targetUserId) + 1;
+
+  const rank = new canvacord.Rank()
+    .setAvatar(targetUserObj.user.displayAvatarURL({ size: 256 }))
+    .setRank(currentRank)
+    .setLevel(fetchedLevel.level)
+    .setCurrentXP(fetchedLevel.xp)
+    .setRequiredXP(calculateLevelXp(fetchedLevel.level))
+    .setProgressBar('#1A000D', 'COLOR')
+    .setUsername(targetUserObj.user.username)
+
+  const data = await rank.build();
+  const attachment = new AttachmentBuilder(data);
+  await interaction.editReply({ files: [attachment] });
+
+}
+
+
 
 // ! EXPORTING FUNCTIONS !
 
@@ -237,4 +302,5 @@ module.exports = {
   slashSlapCommand,
   slashPunchCommand,
   slashBonkCommand,
+  slashLevelCommand,
 }

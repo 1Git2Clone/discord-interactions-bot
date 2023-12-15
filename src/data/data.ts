@@ -100,6 +100,10 @@ export const commandArray = [
   {
     name: "bonk",
     description: "Bonk someone who's horni"
+  },
+  {
+    name: "level",
+    description: "Displays you/the mentioned user's level."
   }
 ]
 
