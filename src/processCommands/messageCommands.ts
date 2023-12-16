@@ -8,7 +8,7 @@
 import { Client, Message, User } from "discord.js";
 import { COMMAND_PREFIX, commandArray } from "../data/data";
 import { getUserFromMention } from "../utils/functions";
-const didYouMean = require('didyoumean2')
+const didYouMean = require('didyoumean2').default;
 const messageCommands = require('../initializeCommands/messageCommands'); 
 const data = require('../data/data')
 
@@ -116,7 +116,7 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
 
   if(command.length < 10 && command.length > 2) {
     const suggestedCommand = didYouMean(command, commandArray.map(command => command.name)) // https://www.npmjs.com/package/didyoumean2
-    message.reply(`Closest match to your command is: ${suggestedCommand}`)
+    message.reply(`Closest match to your command is: ${COMMAND_PREFIX}${suggestedCommand}`)
     return;
   }
 
