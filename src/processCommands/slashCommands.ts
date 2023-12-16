@@ -98,7 +98,7 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashLevelCommand(interaction);
     break;
 
-    // Slash command for displaying the top 10 levels
+    // Slash command for displaying the top 9 levels
     case `${data.commandArray[16].name}`:
       slashCommands.slashTopRanksCommand(interaction);
     break;
