@@ -356,7 +356,9 @@ async function slashLevelCommand(
 }
 
 
-// Slash topranks command !!
+// Slash topranks command - I hate that its slow but if it works DON'T touch it!!
+import { GuildMember } from 'discord.js';
+
 async function slashTopRanksCommand(interaction: CommandInteraction): Promise<void> {
   if (!interaction.inGuild()) {
     interaction.reply('You can only run this command inside a server.');
@@ -366,24 +368,34 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
   await interaction.deferReply();
 
   try {
-    // @ts-ignore interaction.guild can't be null because of the first if() construction
+    // @ts-ignore interaction.guild cant be null because of the first if() construction
     const allLevels = await Level.find({ guildId: interaction.guild.id }).select(
       '-_id userId level xp username'
     );
 
-    allLevels.sort({ level: -1, xp: -1 });
-
-    const topRanks = allLevels.slice(0, 9);
-
-    const formattedRanks = topRanks.map((rank: { userId: UserResolvable; username: any; level: any; xp: any }, index: number) => {
-      try {
-        const username = rank.username || 'Unknown';
-        return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
-      } catch (error) { // @ts-ignore - Error only happens if user is in top 9 but isnt in the server.
-        console.error(`Error processing top rank at index ${index}: ${error.message}`);
-        return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+    allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
+      if (a.level === b.level) {
+        return b.xp - a.xp;
+      } else {
+        return b.level - a.level;
       }
     });
+
+    const topRanks = allLevels.slice(0, 9);
+    
+    const formattedRanks = await Promise.all(
+      topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }, index: number) => {
+        try { // This handling is required if someone from the top 10 has left the guild.
+          // @ts-ignore interaction.guild cant be null because of the first if() construction
+          const member = await interaction.guild.members.fetch(rank.userId);
+          const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
+        } catch (error) { // @ts-ignore
+          console.error(`Error fetching member with ID ${rank.userId}: ${error.message}`);
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+        }
+      })
+    );
 
     interaction.editReply(`## ***~ Top 9 Yappers ~***\n${formattedRanks.join('\n')}`);
   } catch (error) {
@@ -391,7 +403,6 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
     interaction.editReply('An error occurred while fetching top ranks.');
   }
 }
-
 
 
 /*
