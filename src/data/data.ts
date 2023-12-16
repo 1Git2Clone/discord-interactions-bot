@@ -159,7 +159,7 @@ export const commandArray = [
   },
   { // 16
     name: "topranks",
-    description: `Displays the top 10 users of the server!`
+    description: `Displays the top 9 users of the server!`
   },
   { // 17
     name: "bury",
