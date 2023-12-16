@@ -356,7 +356,7 @@ async function slashLevelCommand(
 }
 
 
-// Slash topranks command - I hate that its slow but if it works DON'T touch it!!
+// Slash topranks command - I hate that its slow but if it works DON'T touch it!! (https://cdn.discordapp.com/attachments/1180115044218978425/1185692424979353740/IMG_1694.jpg)
 import { GuildMember } from 'discord.js';
 
 async function slashTopRanksCommand(interaction: CommandInteraction): Promise<void> {
