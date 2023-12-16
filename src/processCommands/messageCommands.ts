@@ -6,8 +6,9 @@
 
 
 import { Client, Message, User } from "discord.js";
-import { COMMAND_PREFIX } from "../data/data";
+import { COMMAND_PREFIX, commandArray } from "../data/data";
 import { getUserFromMention } from "../utils/functions";
+const didYouMean = require('didyoumean2')
 const messageCommands = require('../initializeCommands/messageCommands'); 
 const data = require('../data/data')
 
@@ -111,6 +112,12 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
     
+  }
+
+  if(command.length < 10 && command.length > 2) {
+    const suggestedCommand = didYouMean(command, commandArray.map(command => command.name)) // https://www.npmjs.com/package/didyoumean2
+    message.reply(`Closest match to your command is: ${suggestedCommand}`)
+    return;
   }
 
 };
