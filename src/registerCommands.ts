@@ -164,24 +164,47 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'kick',
+    description: 'Kick the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to kick',
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'topranks',
+    description: 'Displays the top 10 users from the /level system! (Biggest yappers)',
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
   try {
-  console.log('Registering slash commands...')
+    console.log('Registering slash commands...');
 
-  await rest.put(
-    Routes.applicationGuildCommands(
-      process.env.CLIENT_ID,
-      process.env.GUILD_ID,
-      ),
-    { body: commands }
-  );
+    // .env file should look like: GUILD_ID = 123,456,789 and so on
+    const targetGuilds = process.env.GUILD_IDS?.split(',') || [];
 
-  console.log('Slash commands were registered successfully!')
+    if (targetGuilds.length === 0) {
+      console.log('No target guilds specified in the environment variable GUILD_IDS.');
+      return;
+    }
+
+    for (const guildId of targetGuilds) {
+      await rest.put(
+        Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId),
+        { body: commands }
+      );
+
+      console.log(`Slash commands were registered successfully for guild ID: ${guildId}`);
+    }
   } catch (error) {
-    console.log(`There was an error: ${error}`);
+    console.error(`There was an error: ${error}`);
   }
 })();

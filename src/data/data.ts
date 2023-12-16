@@ -70,7 +70,11 @@ export const killArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1185293539232460820/ira-gamagoori-attack.gif?ex=658f15a1&is=657ca0a1&hm=cc342930e5cf319f374e974e1ad421a292f131a5f5d8aff1d345901b535a9daf&",
   "https://cdn.discordapp.com/attachments/904591166580879400/1185318839177728020/wasted-wastedmidi.gif?ex=658f2d31&is=657cb831&hm=0bfccf35f557f0ba356a374d70976a8b7a7197a0d402fd837c92111cf7100326&",
 ]
-
+export const kickArray = [
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185566729104019486/falling-from-window-anime-death.gif",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185566728541966458/mad-angry.gif",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185566727845720195/kick-funny.gif",
+]
 
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
@@ -137,8 +141,16 @@ export const commandArray = [
     description: `Kills a user. D: (${COMMAND_PREFIX})`
   },
   { // 14
+    name: "kick",
+    description: `Kicks a user. (${COMMAND_PREFIX})`
+  },
+  { // 15
     name: "level",
     description: `Displays you/the mentioned user's level.`
+  },
+  { // 16
+    name: "topranks",
+    description: `Displays the top 10 users of the server!`
   },
 ]
 

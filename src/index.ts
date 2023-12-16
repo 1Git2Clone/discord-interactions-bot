@@ -65,6 +65,6 @@ client.on('messageCreate', async (message: Message) => {
 // SLASH COMMANDS ('./slashCommands.js)
 client.on('interactionCreate', async (interaction: CommandInteraction) => {
 
-  require('./processCommands/slashCommands')(interaction, interaction.user)
+  require('./processCommands/slashCommands')(interaction, interaction.user);
   
 });

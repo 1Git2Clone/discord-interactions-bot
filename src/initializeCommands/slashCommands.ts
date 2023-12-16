@@ -5,9 +5,9 @@
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
 require('dotenv').config(); // CHECK README.md
-require('../functions')
-import { Message, User, EmbedBuilder, CommandInteraction, AttachmentBuilder } from 'discord.js';
-import { getRandomEmbedElementFromArray } from "../functions";
+require('../utils/functions')
+import { Message, User, EmbedBuilder, CommandInteraction, AttachmentBuilder, FetchMemberOptions, FetchMembersOptions, UserResolvable } from 'discord.js';
+import { getRandomEmbedElementFromArray } from "../utils/functions";
 
 
 // ! SLASH COMMANDS !
@@ -224,6 +224,7 @@ async function slashDriveCommand(
   });
 }
 
+// Slash command for nomming/eating a user
 async function slashNomCommand(
   interaction: CommandInteraction,
   nomArray: string[],
@@ -246,6 +247,7 @@ async function slashNomCommand(
   }
 }
 
+// Slash command for killing a user
 async function slashKillCommand(
   interaction: CommandInteraction,
   killArray: string[],
@@ -265,6 +267,28 @@ async function slashKillCommand(
     await interaction.reply({
       content: `NOO! DON'T DO THATTT!`,
       embeds: [slapEmbed],
+    });
+  }
+}
+
+// Slash command for kicking a user
+async function slashKickCommand(
+  interaction: CommandInteraction,
+  kickArray: string[],
+  invoker: User,
+  userToInteract: User
+  ): Promise<void> {
+    const kickEmbed = getRandomEmbedElementFromArray(kickArray);
+  if (userToInteract && invoker !== userToInteract) {
+    await interaction.reply({
+      content: `*${invoker.toString()} kicks ${userToInteract.toString()}*`,
+      embeds: [kickEmbed],
+    });
+  }
+  else {
+    await interaction.reply({
+      content: `Are you into that?`,
+      embeds: [kickEmbed],
     });
   }
 }
@@ -334,6 +358,66 @@ async function slashLevelCommand(
 }
 
 
+// Slash topranks command !!
+import { GuildMember } from 'discord.js';
+
+async function slashTopRanksCommand(interaction: CommandInteraction): Promise<void> {
+  if (!interaction.inGuild()) {
+    interaction.reply('You can only run this command inside a server.');
+    return;
+  }
+
+  await interaction.deferReply();
+
+  try {
+    // @ts-ignore interaction.guild cant be null because of the first if() construction
+    const allLevels = await Level.find({ guildId: interaction.guild.id }).select(
+      '-_id userId level xp username'
+    );
+
+    allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
+      if (a.level === b.level) {
+        return b.xp - a.xp;
+      } else {
+        return b.level - a.level;
+      }
+    });
+
+    const topRanks = allLevels.slice(0, 10);
+
+    // this is some schizophrenic disorder that i have where everything
+    // HAS to be padded perfectly. Please dont mind it <3
+    const maxDigits = Math.floor(Math.log10(topRanks.length)) + 1; 
+    
+    const formattedRanks = await Promise.all(topRanks.map(async (rank: {
+        userId: UserResolvable | FetchMemberOptions | (FetchMembersOptions & {
+          user: UserResolvable;
+        }); username: any; level: any; xp: any;
+      }, index: number) => {
+      // @ts-ignore interaction.guild cant be null because of the first if() construction
+      const member = await interaction.guild.members.fetch(rank.userId);
+      const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
+
+      return `**${(index + 1).toString().padStart(maxDigits, ' ')}** Level ${rank.level} (XP: ${rank.xp}) - ${username}`;
+    }));
+
+    interaction.editReply(`## ***~ Top 10 Yappers ~***\n${formattedRanks.join('\n')}`);
+  } catch (error) {
+    console.error(`Error fetching top ranks: ${error}`);
+    interaction.editReply('An error occurred while fetching top ranks.');
+  }
+}
+
+/*
+const embed = new EmbedBuilder()
+      .setColor('#FF0000')
+      .setTitle(`*** ~ TOP 10 RANKS ~ ***`)
+      .setURL('https://www.youtube.com/@nopengoo')
+      .setThumbnail('https://media.discordapp.net/attachments/614790390020833280/1185596132420767895/33d3cf9b1ca93f1a77994e798974ac83aa.png?&format=webp&quality=lossless')
+      .addFields(formattedRanks)
+      .setTimestamp()
+      .setFooter({ text: 'KEEP ON YAPPING!', iconURL: 'https://media.discordapp.net/attachments/614790390020833280/1185596132420767895/33d3cf9b1ca93f1a77994e798974ac83aa.png?ex=65902f71&is=657dba71&hm=19f028d389b8b686e6a6a655493e847fd77822b2f6a3ea7790f389b4985625c9&=&format=webp&quality=lossless' });
+*/
 
 // ! EXPORTING FUNCTIONS !
 
@@ -353,5 +437,7 @@ module.exports = {
   slashDriveCommand,
   slashNomCommand,
   slashKillCommand,
+  slashKickCommand,
   slashLevelCommand,
+  slashTopRanksCommand,
 }

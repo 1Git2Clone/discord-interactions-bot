@@ -7,8 +7,7 @@
 
 import { Client, Message, User } from "discord.js";
 import { COMMAND_PREFIX } from "../data/data";
-import { getUserFromMention } from "../functions";
-require('../functions')
+import { getUserFromMention } from "../utils/functions";
 const messageCommands = require('../initializeCommands/messageCommands'); 
 const data = require('../data/data')
 
@@ -97,6 +96,11 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
     // Message command for killing the user D:
     case`${data.commandArray[13].name}`:
       messageCommands.killMessageCommand(message, data.killArray, data.slapArray, invoker, userToInteract);
+    break;
+
+    // Message command for kicking the user
+    case`${data.commandArray[14].name}`:
+      messageCommands.kickMessageCommand(message, data.kickArray, invoker, userToInteract);
     break;
 
     default: // No command case, I dont even think its needed to exist but oh well...

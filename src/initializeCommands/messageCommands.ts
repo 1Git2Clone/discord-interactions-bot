@@ -4,9 +4,9 @@
 // DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
-require('../functions')
+require('../utils/functions')
 import { Message, User, EmbedBuilder } from 'discord.js';
-import { getRandomEmbedElementFromArray } from "../functions";
+import { getRandomEmbedElementFromArray } from "../utils/functions";
 
 
 // ! MESSAGE COMMANDS !
@@ -249,6 +249,7 @@ async function nomMessageCommand(
   }
 }
 
+// Command for killing a user
 async function killMessageCommand(
   message: Message,
   killArray: string[],
@@ -274,6 +275,30 @@ async function killMessageCommand(
   }
 }
 
+// Command for kicking a user
+async function kickMessageCommand(
+  message: Message,
+  kickArray: string[],
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+  const kickEmbed = getRandomEmbedElementFromArray(kickArray);
+
+  if (userToInteract && invoker !== userToInteract) {
+    await message.reply({
+      content: `*${invoker.toString()} kicks ${userToInteract.toString()}*`,
+      embeds: [kickEmbed],
+    });
+  }
+  else {
+    await message.reply({
+      content: `Are you into that?`,
+      embeds: [kickEmbed],
+    });
+  }
+}
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -291,4 +316,5 @@ module.exports = {
   driveMessageCommand,
   nomMessageCommand,
   killMessageCommand,
+  kickMessageCommand,
 }

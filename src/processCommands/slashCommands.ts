@@ -5,7 +5,6 @@
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
 import { CommandInteraction, User } from "discord.js";
-require('../functions')
 const slashCommands = require('../initializeCommands/slashCommands'); 
 const data = require('../data/data')
 
@@ -89,9 +88,19 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashKillCommand(interaction, data.killArray, data.slapArray, invoker, userToInteract);
     break;
 
+    // Slash command for kicking the user
+    case`${data.commandArray[14].name}`:
+      slashCommands.slashKickCommand(interaction, data.kickArray, invoker, userToInteract);
+    break;
+
     // Slash command for displaying the user level (NO MESSAGE COMMAND VARIANT)
-    case `${data.commandArray[14].name}`:
+    case `${data.commandArray[15].name}`:
       slashCommands.slashLevelCommand(interaction, invoker, userToInteract);
+    break;
+
+    // Slash command for displaying the top 10 levels
+    case `${data.commandArray[16].name}`:
+      slashCommands.slashTopRanksCommand(interaction);
     break;
 
     default: // No command case, I dont even think its needed to exist but oh well...
