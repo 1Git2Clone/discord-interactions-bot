@@ -112,18 +112,7 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'level',
-    description: 'Display the level of a user. (You by default)',
-    options: [
-      {
-        name: 'target-user',
-        type: 6, // Type 6 represents a user
-        description: 'The user to check level. (Default = You)',
-        required: false,
-      },
-    ],
-  },
+  
   {
     name: 'drive',
     description: 'Sends a random Ryan Gosling GIF.'
@@ -177,8 +166,32 @@ const commands = [
     ],
   },
   {
+    name: 'level',
+    description: 'Display the level of a user. (You by default)',
+    options: [
+      {
+        name: 'target-user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to check level. (Default = You)',
+        required: false,
+      },
+    ],
+  },
+  {
     name: 'topranks',
     description: 'Displays the top 10 users from the /level system! (Biggest yappers)',
+  },
+  {
+    name: 'bury',
+    description: 'Bury the mentioned user',
+    options: [
+      {
+        name: 'user',
+        type: 6, // Type 6 represents a user
+        description: 'The user to bury',
+        required: true,
+      },
+    ],
   },
 ];
 

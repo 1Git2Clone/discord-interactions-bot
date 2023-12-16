@@ -103,6 +103,11 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
       messageCommands.kickMessageCommand(message, data.kickArray, invoker, userToInteract);
     break;
 
+    // Message command for kicking the user
+    case`${data.commandArray[17].name}`:
+      messageCommands.buryMessageCommand(message, data.buryArray, data.selfBuryArray, invoker, userToInteract);
+    break;
+
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
     

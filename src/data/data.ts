@@ -75,6 +75,15 @@ export const kickArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1185566728541966458/mad-angry.gif",
   "https://cdn.discordapp.com/attachments/614790390020833280/1185566727845720195/kick-funny.gif",
 ]
+export const buryArray = [
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185635484412694549/mark-cooper-jones-jay-foreman.gif",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185635484945354862/nohemy-noh.gif",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185635485545144331/grave-rip.gif",
+]
+export const selfBuryArray = [ // I doubt I'll have more than two items for this but oh well.
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185635416989253652/spongebob-squarepants-spongebob.gif",
+  "https://cdn.discordapp.com/attachments/614790390020833280/1185635416594993172/dead-bury.gif"
+]
 
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
@@ -151,6 +160,10 @@ export const commandArray = [
   { // 16
     name: "topranks",
     description: `Displays the top 10 users of the server!`
+  },
+  { // 17
+    name: "bury",
+    description: `Buries a user. (${COMMAND_PREFIX})`
   },
 ]
 

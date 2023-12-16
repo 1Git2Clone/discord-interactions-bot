@@ -6,7 +6,7 @@
 
 require('../utils/functions')
 import { Message, User, EmbedBuilder } from 'discord.js';
-import { getRandomEmbedElementFromArray } from "../utils/functions";
+import { getRandomEmbedElementFromArray, getQuoteIndexMessageCommand } from "../utils/functions";
 
 
 // ! MESSAGE COMMANDS !
@@ -32,8 +32,15 @@ async function quoteMessageCommand(
   message: Message,
   quoteArray: string[]
   ): Promise<void> {
-  const randomIndex = Math.floor(Math.random() * quoteArray.length);
+  // function handles !quote 1 2 3 by getting the first int and ignoring the rest...
+  const index = getQuoteIndexMessageCommand(message, quoteArray);
+
+  const randomIndex = ( index != undefined && !isNaN(index) && index >= 0 && ( index <= quoteArray.length - 1 ) )
+  ? (index)
+  : ( Math.floor(Math.random() * quoteArray.length) );
+
   const selectedQuote = quoteArray[randomIndex];
+  
   await message.channel.send(selectedQuote);
 }
   
@@ -299,6 +306,32 @@ async function kickMessageCommand(
   }
 }
 
+// Command for burying a user
+async function buryMessageCommand(
+  message: Message,
+  buryArray: string[],
+  selfBuryArray: string[],
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  if (!userToInteract) { message.reply('No user mentioned.'); return; }
+  
+  if (userToInteract && invoker !== userToInteract) {
+    const buryEmbed = getRandomEmbedElementFromArray(buryArray);
+    await message.reply({
+      content: `*${invoker.toString()} buries ${userToInteract.toString()}*`,
+      embeds: [buryEmbed],
+    });
+  }
+  else {
+    const selfBuryEmbed = getRandomEmbedElementFromArray(selfBuryArray);
+    await message.reply({
+      content: `*${invoker.toString()} buries themselves*`,
+      embeds: [selfBuryEmbed],
+    });
+  }
+}
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -317,4 +350,5 @@ module.exports = {
   nomMessageCommand,
   killMessageCommand,
   kickMessageCommand,
+  buryMessageCommand,
 }

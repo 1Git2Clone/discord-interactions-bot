@@ -416,6 +416,31 @@ const embed = new EmbedBuilder()
       .setFooter({ text: 'KEEP ON YAPPING!', iconURL: 'https://media.discordapp.net/attachments/614790390020833280/1185596132420767895/33d3cf9b1ca93f1a77994e798974ac83aa.png?ex=65902f71&is=657dba71&hm=19f028d389b8b686e6a6a655493e847fd77822b2f6a3ea7790f389b4985625c9&=&format=webp&quality=lossless' });
 */
 
+// Slash command for burying a user
+async function slashBuryCommand(
+  interaction: CommandInteraction,
+  buryArray: string[],
+  selfBuryArray: string[],
+  invoker: User,
+  userToInteract: User
+  ): Promise<void> {
+  if (userToInteract && invoker !== userToInteract) {
+    const buryEmbed = getRandomEmbedElementFromArray(buryArray);
+    await interaction.reply({
+      content: `*${invoker.toString()} buries ${userToInteract.toString()}*`,
+      embeds: [buryEmbed],
+    });
+  }
+  else {
+    const selfBuryEmbed = getRandomEmbedElementFromArray(selfBuryArray);
+    await interaction.reply({
+      content: `*${invoker.toString()} buries themselves*`,
+      embeds: [selfBuryEmbed],
+    });
+  }
+}
+
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -437,4 +462,5 @@ module.exports = {
   slashKickCommand,
   slashLevelCommand,
   slashTopRanksCommand,
+  slashBuryCommand,
 }

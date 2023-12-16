@@ -6,7 +6,8 @@
 
 // !!!FUNCTIONS USED IN COMMANDS!!!
 
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
+import { quoteArray } from '../data/data'; // getQuoteIndexMessageCommand(index: number | undefined, client: any)
 
 function getRandomEmbedElementFromArray<T>(array: T[]): EmbedBuilder {
   const randomIndex = Math.floor(Math.random() * array.length);
@@ -37,7 +38,20 @@ function getUserFromMention(mention: string | undefined, client: any) {
 	}
 }
 
+function getQuoteIndexMessageCommand(message: Message, quoteArray: any[]) {
+  const args = message.content.slice('!quote'.length).trim().split(/ +/);
+  const firstArg = args.shift();
+  const index = (firstArg ? parseInt(firstArg) : NaN) - 1;
+	
+  if (isNaN(index) || index < 0 || index >= quoteArray.length) {
+    return;
+  }
+
+  return index;
+}
+
 export {
   getRandomEmbedElementFromArray,
+  getQuoteIndexMessageCommand,
   getUserFromMention,
 };
