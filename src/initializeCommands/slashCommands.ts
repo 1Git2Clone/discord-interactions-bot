@@ -361,6 +361,20 @@ async function slashLevelCommand(
 // Slash topranks command !!
 import { GuildMember } from 'discord.js';
 
+async function fetchTopRanks(guildId: string): Promise<any[]> {
+  const allLevels = await Level.find({ guildId }).select('-_id userId level xp username');
+  allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => (a.level === b.level ? b.xp - a.xp : b.level - a.level));
+  return allLevels.slice(0, 10);
+}
+
+async function getUsername(member: GuildMember, fallback: string): Promise<string> {
+  return member instanceof GuildMember ? member.user.username : fallback;
+}
+
+function formatRank(index: number, maxDigits: number, username: string, level: any, xp: any): string {
+  return `**${(index + 1).toString().padStart(maxDigits, ' ')}** Level ${level} (XP: ${xp}) - ${username}`;
+}
+
 async function slashTopRanksCommand(interaction: CommandInteraction): Promise<void> {
   if (!interaction.inGuild()) {
     interaction.reply('You can only run this command inside a server.');
@@ -370,36 +384,18 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
   await interaction.deferReply();
 
   try {
-    // @ts-ignore interaction.guild cant be null because of the first if() construction
-    const allLevels = await Level.find({ guildId: interaction.guild.id }).select(
-      '-_id userId level xp username'
+    // @ts-ignore interaction.guild can't be null because of the first if() construction
+    const topRanks = await fetchTopRanks(interaction.guild.id);
+    const maxDigits = Math.floor(Math.log10(topRanks.length)) + 1;
+
+    const formattedRanks = await Promise.all(
+      topRanks.map(async (rank, index) => {
+        // @ts-ignore interaction.guild can't be null because of the first if() construction
+        const member = await interaction.guild.members.fetch(rank.userId);
+        const username = await getUsername(member, rank.username || 'Unknown');
+        return formatRank(index, maxDigits, username, rank.level, rank.xp);
+      })
     );
-
-    allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
-      if (a.level === b.level) {
-        return b.xp - a.xp;
-      } else {
-        return b.level - a.level;
-      }
-    });
-
-    const topRanks = allLevels.slice(0, 10);
-
-    // this is some schizophrenic disorder that i have where everything
-    // HAS to be padded perfectly. Please dont mind it <3
-    const maxDigits = Math.floor(Math.log10(topRanks.length)) + 1; 
-    
-    const formattedRanks = await Promise.all(topRanks.map(async (rank: {
-        userId: UserResolvable | FetchMemberOptions | (FetchMembersOptions & {
-          user: UserResolvable;
-        }); username: any; level: any; xp: any;
-      }, index: number) => {
-      // @ts-ignore interaction.guild cant be null because of the first if() construction
-      const member = await interaction.guild.members.fetch(rank.userId);
-      const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
-
-      return `**${(index + 1).toString().padStart(maxDigits, ' ')}** Level ${rank.level} (XP: ${rank.xp}) - ${username}`;
-    }));
 
     interaction.editReply(`## ***~ Top 10 Yappers ~***\n${formattedRanks.join('\n')}`);
   } catch (error) {
@@ -407,6 +403,7 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
     interaction.editReply('An error occurred while fetching top ranks.');
   }
 }
+
 
 /*
 const embed = new EmbedBuilder()
