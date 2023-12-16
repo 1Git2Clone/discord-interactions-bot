@@ -116,6 +116,7 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
 
   if(command.length < 10 && command.length > 2) {
     const suggestedCommand = didYouMean(command, commandArray.map(command => command.name)) // https://www.npmjs.com/package/didyoumean2
+    if(suggestedCommand === null) { return; }
     message.reply(`Closest match to your command is: \`${COMMAND_PREFIX}${suggestedCommand}\``)
     return;
   }
