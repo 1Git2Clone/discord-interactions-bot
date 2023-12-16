@@ -7,7 +7,6 @@
 // !!!FUNCTIONS USED IN COMMANDS!!!
 
 import { EmbedBuilder, Message } from 'discord.js';
-import { quoteArray } from '../data/data'; // getQuoteIndexMessageCommand(index: number | undefined, client: any)
 
 function getRandomEmbedElementFromArray<T>(array: T[]): EmbedBuilder {
   const randomIndex = Math.floor(Math.random() * array.length);
