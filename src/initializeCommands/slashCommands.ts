@@ -381,11 +381,7 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
       }
     });
 
-    const topRanks = allLevels.slice(0, 10);
-
-    // this is some schizophrenic disorder that i have where everything
-    // HAS to be padded perfectly. Please dont mind it <3
-    const maxDigits = Math.floor(Math.log10(topRanks.length)) + 1; 
+    const topRanks = allLevels.slice(0, 9);
     
     const formattedRanks = await Promise.all(
       topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }, index: number) => {
@@ -393,15 +389,15 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
           // @ts-ignore interaction.guild cant be null because of the first if() construction
           const member = await interaction.guild.members.fetch(rank.userId);
           const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
-          return `**${(index + 1).toString().padStart(maxDigits, ' ')}** Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
+          return `**${(index + 1)}** Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
         } catch (error) { // @ts-ignore
           console.error(`Error fetching member with ID ${rank.userId}: ${error.message}`);
-          return `**${(index + 1).toString().padStart(maxDigits, ' ')}** Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+          return `**${(index + 1)}** Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
         }
       })
     );
 
-    interaction.editReply(`## ***~ Top 10 Yappers ~***\n${formattedRanks.join('\n')}`);
+    interaction.editReply(`## ***~ Top 9 Yappers ~***\n${formattedRanks.join('\n')}`);
   } catch (error) {
     console.error(`Error fetching top ranks: ${error}`);
     interaction.editReply('An error occurred while fetching top ranks.');
