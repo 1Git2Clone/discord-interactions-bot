@@ -179,7 +179,7 @@ const commands = [
   },
   {
     name: 'topranks',
-    description: 'Displays the top 10 users from the /level system! (Biggest yappers)',
+    description: 'Displays the top 9 users from the /level system! (Biggest yappers)',
   },
   {
     name: 'bury',

@@ -389,10 +389,10 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
           // @ts-ignore interaction.guild cant be null because of the first if() construction
           const member = await interaction.guild.members.fetch(rank.userId);
           const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
-          return `**${(index + 1)}** Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
         } catch (error) { // @ts-ignore
           console.error(`Error fetching member with ID ${rank.userId}: ${error.message}`);
-          return `**${(index + 1)}** Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
         }
       })
     );
