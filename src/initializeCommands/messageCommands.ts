@@ -33,6 +33,8 @@ async function quoteMessageCommand(
   quoteArray: string[]
   ): Promise<void> {
   // function handles !quote 1 2 3 by getting the first int and ignoring the rest...
+  // also if you throw words and numbers recklessly it will just give you a random index,
+  // even if the first seperated number you've given is correct... *real skill issue from me*
   const index = getQuoteIndexMessageCommand(message, quoteArray);
 
   const randomIndex = ( index != undefined && !isNaN(index) && index >= 0 && ( index <= quoteArray.length - 1 ) )
