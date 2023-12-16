@@ -95,7 +95,7 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
 
     // Slash command for displaying the user level (NO MESSAGE COMMAND VARIANT)
     case `${data.commandArray[15].name}`:
-      slashCommands.slashLevelCommand(interaction, invoker, userToInteract);
+      slashCommands.slashLevelCommand(interaction);
     break;
 
     // Slash command for displaying the top 10 levels

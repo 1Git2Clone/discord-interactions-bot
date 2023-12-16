@@ -298,8 +298,6 @@ const calculateLevelXp = require('../utils/calculateLevelXp')
 import canvacord from 'canvacord';
 async function slashLevelCommand(
   interaction: CommandInteraction,
-  invoker: User,
-  userToInteract: User
 ): Promise<void> {
   if (!interaction.inGuild()) {
     interaction.reply('You can only run this command inside a server.');
