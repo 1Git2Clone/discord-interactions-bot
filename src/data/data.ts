@@ -155,11 +155,11 @@ export const commandArray = [
   },
   { // 15
     name: "level",
-    description: `Displays you/the mentioned user's level.`
+    description: `Displays you/the mentioned user's level. (${COMMAND_PREFIX})`
   },
   { // 16
     name: "topranks",
-    description: `Displays the top 9 users of the server!`
+    description: `Displays the top 9 users of the server! (${COMMAND_PREFIX})`
   },
   { // 17
     name: "bury",

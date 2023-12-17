@@ -104,6 +104,16 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
       messageCommands.kickMessageCommand(message, data.kickArray, invoker, userToInteract);
     break;
 
+    // Message command for displaying user level
+    case`${data.commandArray[15].name}`:
+      messageCommands.levelMessageCommand(message, invoker, userToInteract);
+    break;
+
+    // Message command for displaying the top 9 users
+    case`${data.commandArray[16].name}`:
+      messageCommands.topRanksMessageCommand(message);
+    break;
+
     // Message command for kicking the user
     case`${data.commandArray[17].name}`:
       messageCommands.buryMessageCommand(message, data.buryArray, data.selfBuryArray, invoker, userToInteract);

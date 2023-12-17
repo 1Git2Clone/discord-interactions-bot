@@ -4,8 +4,10 @@
 // DATE:         14.12.2023 (DD/MM/YYYY)
 // Used ChatGPT? *Sigh* yes a bit... (will use again)
 
+
+require('dotenv').config(); // CHECK README.md
 require('../utils/functions')
-import { Message, User, EmbedBuilder } from 'discord.js';
+import { Message, User, EmbedBuilder, CommandInteraction, AttachmentBuilder, FetchMemberOptions, FetchMembersOptions, UserResolvable } from 'discord.js';
 import { getRandomEmbedElementFromArray, getQuoteIndexMessageCommand } from "../utils/functions";
 
 
@@ -308,6 +310,118 @@ async function kickMessageCommand(
   }
 }
 
+// Command for displaying the user's level
+const Level = require('../models/level')
+const calculateLevelXp = require('../utils/calculateLevelXp')
+import canvacord from 'canvacord';
+async function levelMessageCommand(
+  message: CommandInteraction,
+  invoker: User,
+  userToInteract: User
+): Promise<void> {
+  if (!message.inGuild()) {
+    message.reply('You can only run this command inside a server.');
+    return;
+  }
+
+  const mentionedUserId = userToInteract ? userToInteract.id : invoker.id;
+  const targetUserId = mentionedUserId || message.user.id;
+  // @ts-ignore
+  const targetUserObj = await message.guild.members.fetch(targetUserId);
+
+  const fetchedLevel = await Level.findOne({
+    userId: targetUserId,
+    // @ts-ignore
+    guildId: message.guild.id,
+  });
+
+  if (!fetchedLevel) {
+    message.reply(
+      mentionedUserId
+        ? `${targetUserObj.user.tag} doesn't have any levels yet. Try again when they chat a little more.`
+        : "You don't have any levels yet. Chat a little more and try again."
+    );
+    return;
+  }
+  // @ts-ignore
+  let allLevels = await Level.find({ guildId: message.guild.id }).select(
+    '-_id userId level xp'
+  );
+
+  allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
+    if (a.level === b.level) {
+      return b.xp - a.xp;
+    } else {
+      return b.level - a.level;
+    }
+  });
+
+  let currentRank = allLevels.findIndex((lvl: { userId: string | number | boolean; }) => lvl.userId === targetUserId) + 1;
+
+  const rank = new canvacord.Rank()
+    .setAvatar(targetUserObj.user.displayAvatarURL({ size: 256 }))
+    .setRank(currentRank)
+    .setLevel(fetchedLevel.level)
+    .setCurrentXP(fetchedLevel.xp)
+    .setRequiredXP(calculateLevelXp(fetchedLevel.level))
+    .setProgressBar('#FFC300', 'COLOR')
+    .setUsername(targetUserObj.user.username)
+
+  const data = await rank.build();
+  const attachment = new AttachmentBuilder(data);
+  await message.reply({ files: [attachment] });
+
+}
+
+// Slash topranks command - I hate that its slow but if it works DON'T touch it!! (https://cdn.discordapp.com/attachments/1180115044218978425/1185692424979353740/IMG_1694.jpg)
+import { GuildMember } from 'discord.js';
+
+async function topRanksMessageCommand(
+  message: Message,
+  ): Promise<void> {
+  if (!message.inGuild()) {
+    message.reply('You can only run this command inside a server.');
+    return;
+  }
+
+  try {
+    // @ts-ignore message.guild cant be null because of the first if() construction
+    const allLevels = await Level.find({ guildId: message.guild.id }).select(
+      '-_id userId level xp username'
+    );
+
+    allLevels.sort((a: { level: number; xp: number; }, b: { level: number; xp: number; }) => {
+      if (a.level === b.level) {
+        return b.xp - a.xp;
+      } else {
+        return b.level - a.level;
+      }
+    });
+
+    const topRanks = allLevels.slice(0, 9);
+    
+    const formattedRanks = await Promise.all(
+      topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }, index: number) => {
+        try { // This handling is required if someone from the top 10 has left the guild.
+          // @ts-ignore message.guild cant be null because of the first if() construction
+          const member = await message.guild.members.fetch(rank.userId);
+          const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
+        } catch (error) { // @ts-ignore
+          console.error(`Error fetching member with ID ${rank.userId}: ${error.message}`);
+          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+        }
+      })
+    );
+
+    message.reply(`## ***~ Top 9 Yappers ~***\n${formattedRanks.join('\n')}`);
+  } catch (error) {
+    console.error(`Error fetching top ranks: ${error}`);
+    message.reply('An error occurred while fetching top ranks.');
+  }
+}
+
+
 // Command for burying a user
 async function buryMessageCommand(
   message: Message,
@@ -352,5 +466,7 @@ module.exports = {
   nomMessageCommand,
   killMessageCommand,
   kickMessageCommand,
+  levelMessageCommand,
+  topRanksMessageCommand,
   buryMessageCommand,
 }
