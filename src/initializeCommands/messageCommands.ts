@@ -401,15 +401,15 @@ async function topRanksMessageCommand(
     const topRanks = allLevels.slice(0, 9);
     
     const formattedRanks = await Promise.all(
-      topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }, index: number) => {
+      topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }) => {
         try { // This handling is required if someone from the top 10 has left the guild.
           // @ts-ignore message.guild cant be null because of the first if() construction
           const member = await message.guild.members.fetch(rank.userId);
           const username = member instanceof GuildMember ? member.user.username : rank.username || 'Unknown';
-          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
+          return `1. | Lvl: ${rank.level} (XP: ${rank.xp}) - ${username}`;
         } catch (error) { // @ts-ignore
           console.error(`Error fetching member with ID ${rank.userId}: ${error.message}`);
-          return `**${(index + 1)}** | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
+          return `1. | Lvl: ${rank.level} (XP: ${rank.xp}) - Unknown`;
         }
       })
     );
