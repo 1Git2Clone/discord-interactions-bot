@@ -229,7 +229,7 @@ async function driveMessageCommand(
 ): Promise<void> {
   const driveEmbed = getRandomEmbedElementFromArray(driveArray);
 
-  await message.channel.send({
+  await message.reply({
     embeds: [driveEmbed],
   });
 }
