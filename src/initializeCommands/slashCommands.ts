@@ -440,6 +440,18 @@ async function slashBuryCommand(
   }
 }
 
+// Slash command for sending a chair gif
+async function slashChairCommand(
+  interaction: CommandInteraction,
+  chairArray: string[],
+  ): Promise<void> {
+  const chairEmbed = getRandomEmbedElementFromArray(chairArray);
+  await interaction.reply({
+    embeds: [chairEmbed],
+  });
+}
+
+
 
 // ! EXPORTING FUNCTIONS !
 
@@ -463,4 +475,5 @@ module.exports = {
   slashLevelCommand,
   slashTopRanksCommand,
   slashBuryCommand,
+  slashChairCommand,
 }
