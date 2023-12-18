@@ -108,6 +108,10 @@ module.exports = async (interaction: CommandInteraction, invoker: User) => {
       slashCommands.slashBuryCommand(interaction, data.buryArray, data.selfBuryArray, invoker, userToInteract);
     break;
 
+    case `${data.commandArray[18].name}`:
+      slashCommands.slashDriveCommand(interaction, data.chairArray);
+    break;
+
     default: // No command case, I dont even think its needed to exist but oh well...
     break;   // As a wise man once said: "If it works, DON'T CHANGE IT!!!" :P
 
