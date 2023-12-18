@@ -112,7 +112,6 @@ const commands = [
       },
     ],
   },
-  
   {
     name: 'drive',
     description: 'Sends a random Ryan Gosling GIF.'
@@ -192,6 +191,10 @@ const commands = [
         required: true,
       },
     ],
+  },
+  {
+    name: 'chair',
+    description: 'You need some motivation.'
   },
 ];
 
