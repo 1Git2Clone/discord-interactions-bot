@@ -85,6 +85,9 @@ export const selfBuryArray = [ // I doubt I'll have more than two items for this
   "https://cdn.discordapp.com/attachments/614790390020833280/1185635416989253652/spongebob-squarepants-spongebob.gif",
   "https://cdn.discordapp.com/attachments/614790390020833280/1185635416594993172/dead-bury.gif"
 ]
+export const chairArray = [
+  "https://cdn.discordapp.com/attachments/614790390020833280/1186285033779122207/20231218_143252.gif?ex=6592b108&is=65803c08&hm=d0e4ae0b1733395d42537429b93d2fb41043a7666b3d1ecc27f2ac6372441300&",
+]
 
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
