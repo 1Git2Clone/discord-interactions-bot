@@ -160,7 +160,7 @@ export const commandArray = [
   },
   { // 15
     name: "level",
-    description: `Displays you/the mentioned user's level. (${COMMAND_PREFIX})`
+    description: `Displays your (by default) or the mentioned user's level. (${COMMAND_PREFIX})`
   },
   { // 16
     name: "topranks",

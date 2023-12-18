@@ -5,16 +5,17 @@
 // Used ChatGPT? Not on this file actually. tutorial vid instead... https://www.youtube.com/watch?v=KZ3tIGHU314
 
 require('dotenv').config(); // CHECK README.md
+const data = require('./data/data') // just check the command names from this file, meant for modularity in the code (1 change do 2 change at once)
 const { REST, Routes } = require('discord.js');
 
 const commands = [
-  {
-    name: 'help',
-    description: 'Shows a list of all the available commands.',
+  { // help
+    name: data.commandArray[0].name,
+    description: data.commandArray[0].description,
   },
-  {
-    name: 'quote',
-    description: 'Replies with a nopengoo quote (random if no index is specified)',
+  { // quote
+    name: data.commandArray[1].name,
+    description: data.commandArray[1].description,
     options: [
       {
         name: 'quote_number',
@@ -24,13 +25,13 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'quotelist',
-    description: 'Lists out the available quotes to you'
+  { // quotelist
+    name: data.commandArray[2].name,
+    description: data.commandArray[2].description,
   },
-  {
-    name: 'tieup',
-    description: 'Tie up the mentioned user',
+  { // tieup (kinky hehe)
+    name: data.commandArray[3].name,
+    description: data.commandArray[3].description,
     options: [
       {
         name: 'user',
@@ -40,9 +41,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'hug',
-    description: 'Hug the mentioned user',
+  { // hug
+    name: data.commandArray[4].name,
+    description: data.commandArray[4].description,
     options: [
       {
         name: 'user',
@@ -52,9 +53,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'pat',
-    description: 'Pat the mentioned user',
+  { // pat
+    name: data.commandArray[5].name,
+    description: data.commandArray[5].description,
     options: [
       {
         name: 'user',
@@ -64,9 +65,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'kiss',
-    description: 'Kiss the mentioned user',
+  { // kiss
+    name: data.commandArray[6].name,
+    description: data.commandArray[6].description,
     options: [
       {
         name: 'user',
@@ -76,9 +77,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'slap',
-    description: 'Slap the mentioned user',
+  { // slap
+    name: data.commandArray[7].name,
+    description: data.commandArray[7].description,
     options: [
       {
         name: 'user',
@@ -88,9 +89,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'punch',
-    description: 'Punch the mentioned user',
+  { // punch
+    name: data.commandArray[8].name,
+    description: data.commandArray[8].description,
     options: [
       {
         name: 'user',
@@ -100,9 +101,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'bonk',
-    description: 'Bonk the mentioned user',
+  { // bonk
+    name: data.commandArray[9].name,
+    description: data.commandArray[9].description,
     options: [
       {
         name: 'user',
@@ -112,13 +113,13 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'drive',
-    description: 'Sends a random Ryan Gosling GIF.'
+  { // drive
+    name: data.commandArray[10].name,
+    description: data.commandArray[10].description,
   },
-  {
-    name: 'nom',
-    description: 'Nom the mentioned user',
+  { // nom
+    name: data.commandArray[11].name,
+    description: data.commandArray[11].description,
     options: [
       {
         name: 'user',
@@ -128,9 +129,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'eat',
-    description: 'Eat the mentioned user',
+  { // eat (same as nom)
+    name: data.commandArray[12].name,
+    description: data.commandArray[12].description,
     options: [
       {
         name: 'user',
@@ -140,9 +141,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'kill',
-    description: 'Kill the mentioned user',
+  { // kill (dont kys tho <3)
+    name: data.commandArray[13].name,
+    description: data.commandArray[13].description,
     options: [
       {
         name: 'user',
@@ -152,9 +153,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'kick',
-    description: 'Kick the mentioned user',
+  { // kick (in the physical term not the moderation one)
+    name: data.commandArray[14].name,
+    description: data.commandArray[14].description,
     options: [
       {
         name: 'user',
@@ -164,9 +165,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'level',
-    description: 'Display the level of a user. (You by default)',
+  { // level (KEEP ON YAPPINGGGG)
+    name: data.commandArray[15].name,
+    description: data.commandArray[15].description,
     options: [
       {
         name: 'target-user',
@@ -176,13 +177,13 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'topranks',
-    description: 'Displays the top 9 users from the /level system! (Biggest yappers)',
+  { // topranks (TOP YAPPERS WOO!)
+    name: data.commandArray[16].name,
+    description: data.commandArray[16].description,
   },
-  {
-    name: 'bury',
-    description: 'Bury the mentioned user',
+  { // bury - Hu Tao's business is blooming!!
+    name: data.commandArray[17].name,
+    description: data.commandArray[17].description,
     options: [
       {
         name: 'user',
@@ -192,9 +193,9 @@ const commands = [
       },
     ],
   },
-  {
-    name: 'chair',
-    description: 'You need some motivation.'
+  { // chair (motivated)
+    name: data.commandArray[18].name,
+    description: data.commandArray[18].description,
   },
 ];
 
