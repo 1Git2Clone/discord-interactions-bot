@@ -13,7 +13,8 @@ export const quoteArray = [
   "sweet dreams",
   `Yo rizz me up? Umm, okay, I assume you meant to say "Tie me up" right? Uhm, well, I'm really not sure about that but-`,
   "WAIT I LOVE HOW GETTING TIED UP IS ACTUALLY MY WHOLE PERSONALITY NOW LOL",
-  "# what the fuck"
+  "# what the fuck",
+  "Ara ara~ do you want to get more abused by your master perhaps~?",
 ]
 export const tieupArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&",
