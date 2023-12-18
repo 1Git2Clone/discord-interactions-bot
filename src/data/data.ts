@@ -100,7 +100,7 @@ export const COMMAND_PREFIX = "!";
 export const commandArray = [
   { // 0
     name: "help",
-    description: `Display help information. (${COMMAND_PREFIX}) (I don't reccomend using it if its "!help", because its a very commonly used command by other bots.)`
+    description: `Display help information. (${COMMAND_PREFIX}) (if "!help", use /help)`
   },
   { // 1
     name: "quote",
