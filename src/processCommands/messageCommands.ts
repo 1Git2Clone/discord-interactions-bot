@@ -118,6 +118,9 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
     case`${data.commandArray[17].name}`:
       messageCommands.buryMessageCommand(message, data.buryArray, data.selfBuryArray, invoker, userToInteract);
     break;
+    case `${data.commandArray[18].name}`:
+      messageCommands.driveMessageCommand(message, data.chairArray);
+    break;
 
     // No command case, checks ${COMMAND_PREFIX}arg[0] within the letter range
     default: 
