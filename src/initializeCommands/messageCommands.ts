@@ -448,6 +448,19 @@ async function buryMessageCommand(
   }
 }
 
+
+// Command for sending a random chair GIF
+async function chairMessageCommand(
+  message: Message,
+  chairArray: string[]
+): Promise<void> {
+  const chairEmbed = getRandomEmbedElementFromArray(chairArray);
+
+  await message.reply({
+    embeds: [chairEmbed],
+  });
+}
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -469,4 +482,5 @@ module.exports = {
   levelMessageCommand,
   topRanksMessageCommand,
   buryMessageCommand,
+  chairMessageCommand,
 }
