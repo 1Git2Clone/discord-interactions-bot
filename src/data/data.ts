@@ -169,6 +169,10 @@ export const commandArray = [
     name: "bury",
     description: `Buries a user. (${COMMAND_PREFIX})`
   },
+  { // 18
+    name: "chair",
+    description: `You need some motivation. (${COMMAND_PREFIX})`
+  },
 ]
 
 
