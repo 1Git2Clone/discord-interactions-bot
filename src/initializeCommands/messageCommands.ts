@@ -461,6 +461,14 @@ async function chairMessageCommand(
   });
 }
 
+async function responseToGreeting(
+  message: Message,
+  greetArray: string[],
+  botMentionArray: string[]
+): Promise<void> {
+
+}
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -483,4 +491,5 @@ module.exports = {
   topRanksMessageCommand,
   buryMessageCommand,
   chairMessageCommand,
+  responseToGreeting,
 }

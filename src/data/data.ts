@@ -89,6 +89,12 @@ export const chairArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1186285033779122207/20231218_143252.gif?ex=6592b108&is=65803c08&hm=d0e4ae0b1733395d42537429b93d2fb41043a7666b3d1ecc27f2ac6372441300&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1186290567190171658/vergil-chair.gif?ex=6592b62f&is=6580412f&hm=9befa3c6fcdba7688dfb6561602406df9059dbfbfd675af40dd6ffea1f2aedbb&",
 ]
+export const greetArray = [
+  "yo", "hi", "hii", "hey", "heyy", "heyyy", "sup", "what's up", "whats up", "wassup", "heyo"
+]
+export const botMentionArray = [
+  `<@${process.env.CLIENT_ID}`, `${process.env.CLIENT_ID}`, "botpengoo", "botpengo", "pengobot", "pengoobot"
+]
 
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
