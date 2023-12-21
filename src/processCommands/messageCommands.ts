@@ -129,20 +129,19 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
         if(!suggestedCommand) { return; }
         message.reply(`Closest match to your command is: \`${COMMAND_PREFIX}${suggestedCommand}\``)
         return;
-      }3
+      }
+      if(args.length > 30) {
+      return;
+      } else {
+        const greetArgs = message.content.trim().split(/ +/);
+        const filteredGreetArray = greetArgs.filter(value => data.greetArray.includes(value.toLowerCase()));
+        const filteredMentionArray = greetArgs.filter(value => data.botMentionArray.includes(value.toLowerCase()));
+        if((filteredGreetArray.length > 0 && filteredMentionArray.length > 0) || userToInteract?.id === process.env.CLIENT_ID) {
+          messageCommands.responseToGreeting(message);
+        }
+      }
     break;
     
   }
   
-  if(args.length > 30) {
-    return;
-  } else {
-    const greetArgs = message.content.trim().split(/ +/);
-    const filteredGreetArray = greetArgs.filter(value => data.greetArray.includes(value.toLowerCase()));
-    const filteredMentionArray = greetArgs.filter(value => data.botMentionArray.includes(value.toLowerCase()));
-    if((filteredGreetArray.length > 0 && filteredMentionArray.length > 0) || userToInteract?.id === process.env.CLIENT_ID) {
-      messageCommands.responseToGreeting(message);
-    }
-  }
-
 };
