@@ -463,10 +463,8 @@ async function chairMessageCommand(
 
 async function responseToGreeting(
   message: Message,
-  greetArray: string[],
-  botMentionArray: string[]
 ): Promise<void> {
-
+  message.reply("Heyo!");
 }
 
 // ! EXPORTING FUNCTIONS !

@@ -93,7 +93,7 @@ export const greetArray = [
   "yo", "hi", "hii", "hey", "heyy", "heyyy", "sup", "what's up", "whats up", "wassup", "heyo"
 ]
 export const botMentionArray = [
-  `<@${process.env.CLIENT_ID}`, `${process.env.CLIENT_ID}`, "botpengoo", "botpengo", "pengobot", "pengoobot"
+  "botpengoo", "botpengo", "pengobot", "pengoobot"
 ]
 
 

@@ -6,7 +6,7 @@
 
 
 import { Client, Message, User } from "discord.js";
-import { COMMAND_PREFIX, commandArray } from "../data/data";
+import { COMMAND_PREFIX, commandArray, greetArray } from "../data/data";
 import { getUserFromMention } from "../utils/functions";
 const didYouMean = require('didyoumean2').default;
 const messageCommands = require('../initializeCommands/messageCommands'); 
@@ -15,7 +15,7 @@ const data = require('../data/data')
 
 module.exports = async (client: Client, message: Message, invoker: User) => {
 
-  if(!message.content.startsWith(COMMAND_PREFIX) || message.author.bot) {
+  if(message.author.bot) {
     return;
   }
 
@@ -27,7 +27,7 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
   const user = getUserFromMention(args[0], client);
   const userToInteract = message.mentions.users.first() ? message.mentions.users.first() : user;
 
-  switch (command) {
+  switch (message.content.startsWith(COMMAND_PREFIX) && command) {
     // Help command. Gives a small description about the commands and lists all of them.
     case `${data.commandArray[0].name}`:
       messageCommands.helpMessageCommand(message, data.commandListHeading, data.commandList);
@@ -124,14 +124,25 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
 
     // No command case, checks ${COMMAND_PREFIX}arg[0] within the letter range
     default: 
-      if(command.length < 10 && command.length > 2) {
+      if(command.length < 10 && command.length > 2 && message.content.startsWith(COMMAND_PREFIX)) {
         const suggestedCommand = didYouMean(command, commandArray.map(command => command.name)) // https://www.npmjs.com/package/didyoumean2
         if(!suggestedCommand) { return; }
         message.reply(`Closest match to your command is: \`${COMMAND_PREFIX}${suggestedCommand}\``)
         return;
-      }
+      }3
     break;
     
+  }
+  
+  if(args.length > 30) {
+    return;
+  } else {
+    const greetArgs = message.content.trim().split(/ +/);
+    const filteredGreetArray = greetArgs.filter(value => data.greetArray.includes(value.toLowerCase()));
+    const filteredMentionArray = greetArgs.filter(value => data.botMentionArray.includes(value.toLowerCase()));
+    if((filteredGreetArray.length > 0 && filteredMentionArray.length > 0) || userToInteract?.id === process.env.CLIENT_ID) {
+      messageCommands.responseToGreeting(message);
+    }
   }
 
 };
