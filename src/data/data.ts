@@ -95,7 +95,9 @@ export const greetArray = [
 export const botMentionArray = [
   "botpengoo", "botpengo", "pengobot", "pengoobot"
 ]
-
+export const loveArray = [
+  "love", "wuv" // why did you guys request this in the chat.
+]
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
 

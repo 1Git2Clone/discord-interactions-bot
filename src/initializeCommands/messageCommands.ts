@@ -467,6 +467,12 @@ async function responseToGreeting(
   message.reply("Heyo!");
 }
 
+async function responseToLove(
+  message: Message,
+): Promise<void> {
+  message.reply("I love you too <:HutaoHeart:1180379473137389629>"); // if you type '\' and select your emoji you can get the raw text like that, quite useful! (Bot has to be in the server)
+}
+
 // ! EXPORTING FUNCTIONS !
 
 
@@ -490,4 +496,5 @@ module.exports = {
   buryMessageCommand,
   chairMessageCommand,
   responseToGreeting,
+  responseToLove,
 }

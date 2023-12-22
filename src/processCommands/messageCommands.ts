@@ -133,12 +133,18 @@ module.exports = async (client: Client, message: Message, invoker: User) => {
       if(args.length > 30) {
       return;
       } else {
-        const greetArgs = message.content.trim().split(/ +/);
-        const filteredGreetArray = greetArgs.filter(value => data.greetArray.includes(value.toLowerCase()));
-        const filteredMentionArray = greetArgs.filter(value => data.botMentionArray.includes(value.toLowerCase()));
-        if((filteredGreetArray.length > 0 && filteredMentionArray.length > 0) || userToInteract?.id === process.env.CLIENT_ID) {
+        const customResponseArgs = message.content.trim().split(/ +/);
+        const filteredGreetArray = customResponseArgs.filter(value => data.greetArray.includes(value.toLowerCase()));
+        const filteredMentionArray = customResponseArgs.filter(value => data.botMentionArray.includes(value.toLowerCase()));
+        if(filteredGreetArray.length > 0 && (filteredMentionArray.length > 0 || userToInteract?.id === process.env.CLIENT_ID)) {
           messageCommands.responseToGreeting(message);
+          return;
         }
+        const filteredLoveArray = customResponseArgs.filter(value => data.loveArray.includes(value.toLowerCase())); // i hate that ppl requested this.
+        if(filteredLoveArray.length > 0 && (filteredMentionArray.length > 0 || userToInteract?.id === process.env.CLIENT_ID)) {
+          messageCommands.responseToLove(message);
+        }
+
       }
     break;
     
