@@ -20,7 +20,7 @@ export const tieupArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183349571468918814/tied-up-aiura.gif?ex=6588032b&is=65758e2b&hm=b92c39af90ca21bbbc2965487a418f89e5ff9fef02f2ad5722cbfb0bf0cbb3c1&",
   "https://cdn.discordapp.com/attachments/1180115044218978425/1183694079847059517/ezgif.com-video-to-gif.gif?ex=65894404&is=6576cf04&hm=a5f8a526218dc1d13a2957d6e3405f90cd6de1cc6d3d7e7b27d02108898db347&",
   "https://cdn.discordapp.com/attachments/614790390020833280/1183694247724077056/sasha-blouse.gif?ex=6589442c&is=6576cf2c&hm=63dc677cf5f449483f9f94372bd4d7e241f7aec2b92636e4e906ae22081bf04c&",
-  "https://cdn.discordapp.com/attachments/614790390020833280/1192391499376230511/8mb.video-Rjm-kx7W5rXN1.gif?ex=65a8e81f&is=6596731f&hm=e62bbc642a618f336583386090f3778e32db59ad2e6c95381f86c6aaeb2c12ac&"
+  "https://cdn.discordapp.com/attachments/614790390020833280/1192391499376230511/8mb.video-Rjm-kx7W5rXN1.gif?ex=65a8e81f&is=6596731f&hm=e62bbc642a618f336583386090f3778e32db59ad2e6c95381f86c6aaeb2c12ac&",
 ]
 export const hugArray = [
   "https://cdn.discordapp.com/attachments/614790390020833280/1183462503364186112/hug.gif?ex=65886c58&is=6575f758&hm=275d61937ad2b529274870ad670319c4f978513f9442e19e74e698ca7fb88448&",
