@@ -132,7 +132,7 @@ async function slashKissCommand(
   userToInteract: User
   ): Promise<void> {
 
-  if (invoker.id === "1119640244506087485") {
+  if (invoker.id == "1119640244506087485") {
     const embed = new EmbedBuilder()
     .setColor('#ff6d66');
     embed.setImage(kissArray[0]);
