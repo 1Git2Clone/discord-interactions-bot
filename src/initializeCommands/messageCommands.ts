@@ -126,7 +126,7 @@ async function patMessageCommand(
     });
   }
 
-  if (userToInteract && invoker !== userToInteract) {
+  else if (userToInteract && invoker !== userToInteract) {
     const patEmbed = getRandomEmbedElementFromArray(patArray);
     await message.reply({
       content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,

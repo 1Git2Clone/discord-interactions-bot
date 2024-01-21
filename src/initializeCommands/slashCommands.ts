@@ -119,13 +119,13 @@ async function slashPatCommand(
         content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
         embeds: [embed],
       });
+    } else {
+      const patEmbed = getRandomEmbedElementFromArray(patArray);
+      await interaction.reply({
+        content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
+        embeds: [patEmbed],
+      });
     }
-
-    const patEmbed = getRandomEmbedElementFromArray(patArray);
-    await interaction.reply({
-      content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
-      embeds: [patEmbed],
-    });
   }
   else {
     await interaction.reply({
