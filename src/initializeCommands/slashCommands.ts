@@ -110,6 +110,17 @@ async function slashPatCommand(
   userToInteract: User
   ): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
+    if (invoker.id == "1119640244506087485") {
+      const embed = new EmbedBuilder()
+      .setColor('#ff6d66');
+      embed.setImage(patArray[3]);
+    
+      await interaction.reply({
+        content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
+        embeds: [embed],
+      });
+    }
+
     const patEmbed = getRandomEmbedElementFromArray(patArray);
     await interaction.reply({
       content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,

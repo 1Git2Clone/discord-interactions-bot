@@ -115,6 +115,17 @@ async function patMessageCommand(
 ): Promise<void> {
   if (!userToInteract) { message.reply('No user mentioned.'); return; }
 
+  if (invoker.id == "1119640244506087485") {
+    const embed = new EmbedBuilder()
+    .setColor('#ff6d66');
+    embed.setImage(patArray[3]);
+  
+    await message.reply({
+      content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
+      embeds: [embed],
+    });
+  }
+
   if (userToInteract && invoker !== userToInteract) {
     const patEmbed = getRandomEmbedElementFromArray(patArray);
     await message.reply({
