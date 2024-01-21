@@ -131,6 +131,18 @@ async function slashKissCommand(
   invoker: User,
   userToInteract: User
   ): Promise<void> {
+
+  if (invoker.id === "1119640244506087485") {
+    const embed = new EmbedBuilder()
+    .setColor('#ff6d66');
+    embed.setImage(kissArray[0]);
+  
+    await interaction.reply({
+      content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
+      embeds: [embed],
+    });
+  }
+
   if (userToInteract && invoker !== userToInteract) {
     const kissEmbed = getRandomEmbedElementFromArray(kissArray);
     await interaction.reply({
