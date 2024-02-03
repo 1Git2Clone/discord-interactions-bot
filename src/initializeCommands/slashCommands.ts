@@ -19,10 +19,10 @@ async function slashHelpCommand(
   interaction: CommandInteraction,
   commandListHeading: string,
   commandList: string[]
-  ): Promise<void> {
+): Promise<void> {
   await interaction.reply({
-  content:`${commandListHeading}${commandList}`,
-  ephemeral: true,
+    content: `${commandListHeading}${commandList}`,
+    ephemeral: true,
   });
 }
 
@@ -33,11 +33,11 @@ async function slashHelpCommand(
 async function slashQuoteCommand(
   interaction: CommandInteraction,
   quoteArray: string[]
-  ): Promise<void> {
-    // @ts-ignore
+): Promise<void> {
+  // @ts-ignore
   const index = (interaction.options.getInteger('quote_number') || 0) - 1; // It still works *shrugs*
 
-  const randomIndex = ( index >= 0 && (index <= quoteArray.length - 1) ) ? (index) : ( Math.floor(Math.random() * quoteArray.length) );
+  const randomIndex = (index >= 0 && (index <= quoteArray.length - 1)) ? (index) : (Math.floor(Math.random() * quoteArray.length));
 
   const selectedQuote = quoteArray[randomIndex];
 
@@ -50,10 +50,10 @@ async function slashQuotelistCommand(
   interaction: CommandInteraction,
   quoteListHeading: string,
   quoteList: string[]
-  ): Promise<void> {
+): Promise<void> {
   await interaction.reply({
-  content: `${quoteListHeading}${quoteList}`,
-  ephemeral: true,
+    content: `${quoteListHeading}${quoteList}`,
+    ephemeral: true,
   });
 }
 
@@ -85,7 +85,7 @@ async function slashHugCommand(
   hugArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   const hugEmbed = getRandomEmbedElementFromArray(hugArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -108,13 +108,13 @@ async function slashPatCommand(
   patArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
     if (invoker.id == "1119640244506087485") {
       const embed = new EmbedBuilder()
-      .setColor('#ff6d66');
+        .setColor('#ff6d66');
       embed.setImage(patArray[3]);
-    
+
       await interaction.reply({
         content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
         embeds: [embed],
@@ -141,13 +141,13 @@ async function slashKissCommand(
   kissArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
 
   if (invoker.id == "1119640244506087485") {
     const embed = new EmbedBuilder()
-    .setColor('#ff6d66');
+      .setColor('#ff6d66');
     embed.setImage(kissArray[0]);
-  
+
     await interaction.reply({
       content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
       embeds: [embed],
@@ -175,7 +175,7 @@ async function slashSlapCommand(
   slapArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
     const slapEmbed = getRandomEmbedElementFromArray(slapArray);
     await interaction.reply({
@@ -197,7 +197,7 @@ async function slashPunchCommand(
   punchArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
     const punchEmbed = getRandomEmbedElementFromArray(punchArray);
     await interaction.reply({
@@ -219,7 +219,7 @@ async function slashBonkCommand(
   bonkArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   const bonkEmbed = getRandomEmbedElementFromArray(bonkArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -240,7 +240,7 @@ async function slashBonkCommand(
 async function slashDriveCommand(
   interaction: CommandInteraction,
   driveArray: string[],
-  ): Promise<void> {
+): Promise<void> {
   const driveEmbed = getRandomEmbedElementFromArray(driveArray);
   await interaction.reply({
     embeds: [driveEmbed],
@@ -253,7 +253,7 @@ async function slashNomCommand(
   nomArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   const nomEmbed = getRandomEmbedElementFromArray(nomArray);
 
   if (userToInteract && invoker !== userToInteract) {
@@ -277,7 +277,7 @@ async function slashKillCommand(
   slapArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
     const killEmbed = getRandomEmbedElementFromArray(killArray);
     await interaction.reply({
@@ -300,8 +300,8 @@ async function slashKickCommand(
   kickArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
-    const kickEmbed = getRandomEmbedElementFromArray(kickArray);
+): Promise<void> {
+  const kickEmbed = getRandomEmbedElementFromArray(kickArray);
   if (userToInteract && invoker !== userToInteract) {
     await interaction.reply({
       content: `*${invoker.toString()} kicks ${userToInteract.toString()}*`,
@@ -405,7 +405,7 @@ async function slashTopRanksCommand(interaction: CommandInteraction): Promise<vo
     });
 
     const topRanks = allLevels.slice(0, 9);
-    
+
     const formattedRanks = await Promise.all(
       topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }) => {
         try { // This handling is required if someone from the top 10 has left the guild.
@@ -446,7 +446,7 @@ async function slashBuryCommand(
   selfBuryArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (userToInteract && invoker !== userToInteract) {
     const buryEmbed = getRandomEmbedElementFromArray(buryArray);
     await interaction.reply({
@@ -467,7 +467,7 @@ async function slashBuryCommand(
 async function slashChairCommand(
   interaction: CommandInteraction,
   chairArray: string[],
-  ): Promise<void> {
+): Promise<void> {
   const chairEmbed = getRandomEmbedElementFromArray(chairArray);
   await interaction.reply({
     embeds: [chairEmbed],
@@ -475,6 +475,16 @@ async function slashChairCommand(
 }
 
 
+// Slash command for sending a chair gif
+async function slashPeekCommand(
+  interaction: CommandInteraction,
+  peekArray: string[],
+): Promise<void> {
+  const peekEmbed = getRandomEmbedElementFromArray(peekArray);
+  await interaction.reply({
+    embeds: [peekEmbed],
+  });
+}
 
 // ! EXPORTING FUNCTIONS !
 
@@ -499,4 +509,5 @@ module.exports = {
   slashTopRanksCommand,
   slashBuryCommand,
   slashChairCommand,
+  slashPeekCommand,
 }

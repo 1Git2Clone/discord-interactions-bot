@@ -20,7 +20,7 @@ async function helpMessageCommand(
   message: Message,
   commandListHeading: string,
   commandList: string[]
-  ): Promise<void> {
+): Promise<void> {
   await message.channel.send({
     content: `${commandListHeading}${commandList}`,
   });
@@ -33,33 +33,33 @@ async function helpMessageCommand(
 async function quoteMessageCommand(
   message: Message,
   quoteArray: string[]
-  ): Promise<void> {
+): Promise<void> {
   // function handles !quote 1 2 3 by getting the first int and ignoring the rest...
   // also if you throw words and numbers recklessly it will just give you a random index,
   // even if the first seperated number you've given is correct... *real skill issue from me*
   const index = getQuoteIndexMessageCommand(message, quoteArray);
 
-  const randomIndex = ( index != undefined && !isNaN(index) && index >= 0 && ( index <= quoteArray.length - 1 ) )
-  ? (index)
-  : ( Math.floor(Math.random() * quoteArray.length) );
+  const randomIndex = (index != undefined && !isNaN(index) && index >= 0 && (index <= quoteArray.length - 1))
+    ? (index)
+    : (Math.floor(Math.random() * quoteArray.length));
 
   const selectedQuote = quoteArray[randomIndex];
-  
+
   await message.channel.send(selectedQuote);
 }
-  
+
 
 // Command for printing out the list of quotes
 async function quotelistMessageCommand(
   message: Message,
   quoteListHeading: string,
   quoteList: string[]
-  ): Promise<void> {
+): Promise<void> {
   await message.channel.send({
     content: `${quoteListHeading}${quoteList}`,
   });
 }
-  
+
 
 // Command for tying up a user
 async function tieupMessageCommand(
@@ -67,7 +67,7 @@ async function tieupMessageCommand(
   tieupArray: string[],
   invoker: User,
   userToInteract: User
-  ): Promise<void> {
+): Promise<void> {
   if (!userToInteract) { message.reply('No user mentioned.'); return; }
   if (invoker !== userToInteract) {
     const tieupEmbed = getRandomEmbedElementFromArray(tieupArray)
@@ -79,7 +79,7 @@ async function tieupMessageCommand(
     await message.channel.send(`${userToInteract.toString()} Why do you wanna tie yourself up mate?\n||*please tie me up instead~~!*||`);
   }
 }
-  
+
 
 // Command for hugging a user
 async function hugMessageCommand(
@@ -104,7 +104,7 @@ async function hugMessageCommand(
     });
   }
 }
-  
+
 
 // Command for patting a user
 async function patMessageCommand(
@@ -117,9 +117,9 @@ async function patMessageCommand(
 
   if (invoker.id == "1119640244506087485") {
     const embed = new EmbedBuilder()
-    .setColor('#ff6d66');
+      .setColor('#ff6d66');
     embed.setImage(patArray[3]);
-  
+
     await message.reply({
       content: `*${invoker.toString()} pats ${userToInteract.toString()}*`,
       embeds: [embed],
@@ -139,7 +139,7 @@ async function patMessageCommand(
     });
   }
 }
-  
+
 
 // Command for kissing a user
 async function kissMessageCommand(
@@ -152,9 +152,9 @@ async function kissMessageCommand(
 
   if (invoker.id == "1119640244506087485") {
     const embed = new EmbedBuilder()
-    .setColor('#ff6d66');
+      .setColor('#ff6d66');
     embed.setImage(kissArray[0]);
-  
+
     await message.reply({
       content: `*${invoker.toString()} kisses ${userToInteract.toString()}*`,
       embeds: [embed],
@@ -400,7 +400,7 @@ import { GuildMember } from 'discord.js';
 
 async function topRanksMessageCommand(
   message: Message,
-  ): Promise<void> {
+): Promise<void> {
   if (!message.inGuild()) {
     message.reply('You can only run this command inside a server.');
     return;
@@ -421,7 +421,7 @@ async function topRanksMessageCommand(
     });
 
     const topRanks = allLevels.slice(0, 9);
-    
+
     const formattedRanks = await Promise.all(
       topRanks.map(async (rank: { userId: UserResolvable; username: any; level: any; xp: any }) => {
         try { // This handling is required if someone from the top 10 has left the guild.
@@ -453,7 +453,7 @@ async function buryMessageCommand(
   userToInteract: User
 ): Promise<void> {
   if (!userToInteract) { message.reply('No user mentioned.'); return; }
-  
+
   if (userToInteract && invoker !== userToInteract) {
     const buryEmbed = getRandomEmbedElementFromArray(buryArray);
     await message.reply({
@@ -483,6 +483,17 @@ async function chairMessageCommand(
   });
 }
 
+// You lurker!~
+async function peekMessageCommand(
+  message: Message,
+  peekArray: string[]
+): Promise<void> {
+  const peekEmbed = getRandomEmbedElementFromArray(peekArray);
+
+  await message.reply({
+    embeds: [peekEmbed],
+  });
+}
 async function responseToGreeting(
   message: Message,
 ): Promise<void> {
@@ -517,6 +528,7 @@ module.exports = {
   topRanksMessageCommand,
   buryMessageCommand,
   chairMessageCommand,
+  peekMessageCommand,
   responseToGreeting,
   responseToLove,
 }

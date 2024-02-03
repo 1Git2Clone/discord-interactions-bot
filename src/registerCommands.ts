@@ -197,6 +197,10 @@ const commands = [
     name: data.commandArray[18].name,
     description: data.commandArray[18].description,
   },
+  { // peek
+    name: data.commandArray[19].name,
+    description: data.commandArray[19].description,
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

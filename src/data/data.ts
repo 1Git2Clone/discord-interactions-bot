@@ -99,6 +99,14 @@ export const botMentionArray = [
 export const loveArray = [
   "love", "wuv" // why did you guys request this in the chat.
 ]
+export const peekArray = [
+  "https://media.discordapp.net/attachments/614790390020833280/1203304453512372235/Hh4nIiw.gif?ex=65d09b9a&is=65be269a&hm=2289a079f5db64d138664742b71d8a7cf18bbd16a3fc55b60ef6b97195947ee7&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1203304454074671155/wkPTm8l.gif?ex=65d09b9a&is=65be269a&hm=b31872121ee68676b0a30c5288ec63f3cc17bf9a7ce908e177d4e93a61faf329&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1203304454582173696/aI1RZsy.gif?ex=65d09b9a&is=65be269a&hm=c33610f5882bbe4bb508c361e7605287e3d64487597ca2627fc2a53f558307f5&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1203304455043420200/4XviQL7.gif?ex=65d09b9a&is=65be269a&hm=0c3b7b2a2fcc8a018d376d72ac570b1c6e6acc4e06a06b340ba60ae2fe14df67&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1203304455554994226/wH7kSo2.gif?ex=65d09b9a&is=65be269a&hm=20c28587bcff491e8245c04e39645f8e1603aa964fb24657992eef8b60d51b9b&=",
+  "https://media.discordapp.net/attachments/614790390020833280/1203304456007974942/1SMUFuk.gif?ex=65d09b9a&is=65be269a&hm=705ada33b0c670b3d50ab87cf40dab883a2b5d97a5cb287298ae9a8090e7d577&=",
+]
 
 // COMMANDS LIST AS AN ARRAY WITH COMMAND PREFIX FOR CODE MODULARITY
 
@@ -183,16 +191,20 @@ export const commandArray = [
     name: "chair",
     description: `You need some motivation. (${COMMAND_PREFIX})`
   },
+  { // 19
+    name: "peek",
+    description: `Just lurking hehe... (${COMMAND_PREFIX})`
+  },
 ]
 
 
 // prematurely wrapped all the quotes for !quotelist and /quotelist commands
 export const quoteListHeading = `Here are the available quotes:\n`;
-export const quoteList = quoteArray.map((quote, i) => `**${i+1}:** ${quote}`).join('\n');
+export const quoteList = quoteArray.map((quote, i) => `**${i + 1}:** ${quote}`).join('\n');
 
 // prematurely wrapped all the commands for the !help and /help commands
 export const commandListHeading =
-`# ~ *(${COMMAND_PREFIX}) Commands list (${COMMAND_PREFIX}) ~*
+  `# ~ *(${COMMAND_PREFIX}) Commands list (${COMMAND_PREFIX}) ~*
 Feel free to reply with a mention with any of the ${COMMAND_PREFIX}
 commands or type the ${COMMAND_PREFIX} command alongside a mention.
 Alternatively, you can use slash (/) commands. All commands have at
