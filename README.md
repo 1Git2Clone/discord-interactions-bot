@@ -1,6 +1,6 @@
 # **THIS IS MY FIRST DISCORD BOT**
 
-Planning to make even more commands in the future, feel free to tell me suggestions (discord: 1killsteal)
+Planning to make even more commands in the future, feel free to tell me suggestions (discord: 1kill2steal)
 
 ## CURRENTLY AVAILABLE INTERACTION COMMANDS:
 ### ALL THE COMMANDS ARE DECLARED IN `src/register-commands.js` AND USED IN `src/index.js`
