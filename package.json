@@ -5,11 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm-run-all build:tsc build:registerCommands build:start",
+    "build": "npm run build:tsc",
     "build:tsc": "tsc",
     "build:registerCommands": "node dist/registerCommands.js",
     "build:start": "nodemon dist/index.js",
-    "start": "npm run build"
+    "start": "npm-run-all build:tsc build:registerCommands build build:start"
   },
   "keywords": [],
   "author": "",
